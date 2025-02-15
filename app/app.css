@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@font-face{
+ font-family: 'LotteMartDream';
+ font-style: normal;
+ font-weight: 400;
+ src: 
+  url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff2') format('woff2'),
+  url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff') format('woff');
+}
+
+@theme {
+  --font-sans: 'LotteMartDream'
+}
+
+html,
+body {
+  @apply bg-white;
+  @apply flex flex-col justify-center;
+  @apply mt-[6%];
+  @apply text-base md:text-lg lg:text-xl;
+
+  @media (prefers-color-scheme: dark) {
+    color-scheme: dark;
+  }
+}
