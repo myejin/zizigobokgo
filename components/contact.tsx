@@ -1,4 +1,4 @@
-import Button from "@components/common/button";
+import Button from "@/common/button";
 
 export enum WeddingHostType {
   RIGHT = 'right',

@@ -1,9 +1,9 @@
-import { Header } from "@components/header";
-import { Footer } from "@components/footer";
-import { Photo } from "@components/photo";
-import { Info } from "@components/info";
-import { Invitation } from "@components/invitation";
-import { Contact } from "@components/contact";
+import { Header } from "@/header";
+import { Footer } from "@/footer";
+import { Photo } from "@/photo";
+import { Info } from "@/info";
+import { Invitation } from "@/invitation";
+import { Contact } from "@/contact";
 
 const Main = () => {
   return (
