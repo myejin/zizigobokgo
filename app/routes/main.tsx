@@ -1,18 +1,26 @@
 import { Header } from "@/header";
 import { Footer } from "@/footer";
-import { Photo } from "@/photo";
+import { MainPhoto } from "@/main_photo";
 import { Info } from "@/info";
 import { Invitation } from "@/invitation";
 import { Contact } from "@/contact";
+import { Day } from "@/day";
+import { Location } from "@/location";
+import { PhotoBook } from "@/photo_book";
+import { Account } from "@/account";
 
 const Main = () => {
   return (
     <>
-      <Header />
-      <Photo />
-      <Info />
+      {/* <Header /> */}
+      <MainPhoto />
       <Invitation />
       <Contact />
+      <PhotoBook />
+      <Day />
+      <Location />
+      <Info />
+      <Account />
       <Footer />
     </>
   )

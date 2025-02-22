@@ -1,6 +1,8 @@
 import Button from "@/common/button";
+import Tabs from "./common/tab";
+import type { JSX } from "react";
 
-export enum WeddingHostType {
+enum WeddingHostType {
   RIGHT = 'right',
   RIGHT_RIGHT = 'right_right',
   RIGHT_LEFT = 'right_left',
@@ -9,86 +11,94 @@ export enum WeddingHostType {
   LEFT_LEFT = 'left_left',
 }
 
-export interface WeddingHost {
+interface WeddingHost {
   type: WeddingHostType | string;
   name: string;
   phone: string;
 }
 
+const ContactItem = (hosts: WeddingHost[], type: WeddingHostType.LEFT | WeddingHostType.RIGHT): JSX.Element => {
+  const findNamesByType = (hosts: WeddingHost[], type: string) => {
+    return hosts.find((host) => host.type === type)?.name ?? ''
+  }
+  const names = [
+    findNamesByType(hosts, type),
+    findNamesByType(hosts, `${type}_left`),
+    findNamesByType(hosts, `${type}_right`),
+  ]
+
+  return (
+    <div className="px-6 py-4 bg-white rounded-md shadow-2xl">
+      {names.map((name, idx) => (
+        <div className="my-1 flex justify-between" key={idx}>
+          <div className="w-35">{name}</div>
+          <div className="flex gap-x-1">
+            <div className="text-gray-400">•••</div>
+            <Button 
+              type="mini"
+              text={"📞"} 
+              className="bg-white"
+              onClick={() => console.log('hello')} // TODO
+            />
+            <Button 
+              type="mini"
+              text={"💬"} 
+              onClick={() => console.log('hello')} // TODO
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export const Contact = () => {
   const weddingHosts: WeddingHost[] = [
     {
-      type: 'right',
+      type: 'left',
       name: '김OO',
       phone: '010-1234-5678',
     },
     {
-      type: 'right_right',
+      type: 'left_left',
       name: '아부지',
       phone: '010-1234-5678',
     },
     {
-      type: 'right_left',
+      type: 'left_right',
       name: '신랑맘',
       phone: '010-1234-5678',
     },
     {
-      type: 'left',
+      type: 'right',
       name: '이OO',
       phone: '010-1234-5678',
     },
     {
-      type: 'left_right',
+      type: 'right_left',
       name: '신부아빠',
       phone: '010-1234-5678',
     },
     {
-      type: 'left_left',
+      type: 'right_right',
       name: '김엄마',
       phone: '010-1234-5678',
     },
   ]
 
-  const findNamesByType = (hosts: WeddingHost[], type: string) => {
-    return hosts.find((host) => host.type === type)?.name ?? ''
-  }
-
-  const findParentNamesByType = (hosts: WeddingHost[], type: WeddingHostType.LEFT | WeddingHostType.RIGHT) => {
-    const right = findNamesByType(hosts, `${type}_right`)
-    const left = findNamesByType(hosts, `${type}_left`)
-
-    return right && left ? `${right} • ${left}` : right || left
-  }
-
   return (
-    <div className="my-17 flex flex-col">
-      <div className="flex justify-center">
-        <div className="px-3 w-45 text-right">
-          {findParentNamesByType(weddingHosts, WeddingHostType.RIGHT)}
-        </div>
-        <div className="flex w-30">
-          <div className="px-3">신랑</div>
-          <div>
-            {findNamesByType(weddingHosts, WeddingHostType.RIGHT)}
-          </div>
-        </div>
-      </div>
-      <div className="flex justify-center">
-        <div className="px-3 w-45 text-right">
-          {findParentNamesByType(weddingHosts, WeddingHostType.LEFT)}
-        </div>
-        <div className="flex w-30">
-          <div className="px-3">신부</div>
-          <div>
-            {findNamesByType(weddingHosts, WeddingHostType.LEFT)}
-          </div>
-        </div>
-      </div>
-      <div className="flex justify-center">
-        <Button 
-          text={"연락처 확인하기"} 
-          onClick={() => console.log('hello')} // TODO
+    <div className="py-10 flex flex-col bg-neutral-50">
+      <div className="my-5 flex flex-col items-center">
+        <div className="text-title">축하 연락하기</div>
+        <div className="text-mini text-rosegray opacity-80">직접 축하의 마음을 전해보세요</div>
+        <Tabs
+          className="mt-7 text-mini" 
+          items={[
+            { name: '신랑에게', elem: ContactItem(weddingHosts, WeddingHostType.LEFT) },
+            { name: '신부에게', elem: ContactItem(weddingHosts, WeddingHostType.RIGHT) },
+          ]} 
         />
+        
       </div>
     </div>
   );

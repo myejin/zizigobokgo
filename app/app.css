@@ -17,10 +17,24 @@ html,
 body {
   @apply bg-white;
   @apply flex flex-col justify-center;
-  @apply mt-[6%];
-  @apply text-base md:text-lg lg:text-xl;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
+}
+
+.bg-rosegray {
+  @apply bg-[#E9A5A5];
+}
+.text-rosegray {
+  @apply text-[#E9A5A5];
+}
+.text-title {
+  @apply text-2xl md:text-3xl lg:text-4xl;
+}
+.text-default {
+  @apply text-base md:text-lg lg:text-xl;
+}
+.text-mini {
+  @apply text-sm lg:text-base;
 }
