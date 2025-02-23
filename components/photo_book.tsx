@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Button from "./common/button";
+import { useState } from "react";
 
 const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () => void }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -13,7 +12,7 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
 
   return (
     <div className="fixed inset-0 flex items-center">
-      <div className="flex flex-col bg-white">
+      <div className="flex flex-col bg-white text-gray-700">
         <button 
           onClick={onClose} 
           className="flex justify-end mx-3 my-2" 
@@ -45,27 +44,16 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
 };
 
 
-export const PhotoBook = () => {
-  const photoUrls = [
-    "./default_main_photo.jpeg",
-    "./default_main_photo.jpeg",
-    "./default_main_photo.jpeg",
-    "./default_main_photo.jpeg",
-    "./default_main_photo.jpeg",
-    "./default_main_photo.jpeg",
-    "./default_main_photo.jpeg",
-    "./default_main_photo.jpeg",
-    "./default_main_photo.jpeg",
-    "./default_main_photo.jpeg",
-    "./default_main_photo.jpeg",
-    "./default_main_photo.jpeg",
-  ];
+export const PhotoBook = ({ photoUrls = [] }: { photoUrls?: string[] }) => {
   const preViewLength = 8;
   const [viewModal, setModalAll] = useState(false);
-
+  
+  if (photoUrls.length === 0) {
+    return;
+  }
   return (
-    <div className="py-7 flex flex-col items-center">
-      <div className="mb-7 text-title">Photo</div>
+    <div className="py-15 flex flex-col items-center">
+      <div className="mb-10 text-title">Photo</div>
       
       <div className="grid grid-cols-3 gap-1">
         {photoUrls.slice(0, preViewLength).map((url, idx) => (

@@ -28,7 +28,7 @@ const ContactItem = (hosts: WeddingHost[], type: WeddingHostType.LEFT | WeddingH
   ]
 
   return (
-    <div className="px-6 py-4 bg-white rounded-md shadow-2xl">
+    <div className="px-6 py-4 bg-white rounded-md shadow-xl">
       {names.map((name, idx) => (
         <div className="my-1 flex justify-between" key={idx}>
           <div className="w-35">{name}</div>
@@ -52,54 +52,21 @@ const ContactItem = (hosts: WeddingHost[], type: WeddingHostType.LEFT | WeddingH
   )
 }
 
-export const Contact = () => {
-  const weddingHosts: WeddingHost[] = [
-    {
-      type: 'left',
-      name: '김OO',
-      phone: '010-1234-5678',
-    },
-    {
-      type: 'left_left',
-      name: '아부지',
-      phone: '010-1234-5678',
-    },
-    {
-      type: 'left_right',
-      name: '신랑맘',
-      phone: '010-1234-5678',
-    },
-    {
-      type: 'right',
-      name: '이OO',
-      phone: '010-1234-5678',
-    },
-    {
-      type: 'right_left',
-      name: '신부아빠',
-      phone: '010-1234-5678',
-    },
-    {
-      type: 'right_right',
-      name: '김엄마',
-      phone: '010-1234-5678',
-    },
-  ]
-
+export const Contact = ({ weddingHosts = [] }: { weddingHosts?: WeddingHost[] }) => {
+  if (weddingHosts.length === 0) {
+    return;
+  }
   return (
-    <div className="py-10 flex flex-col bg-neutral-50">
-      <div className="my-5 flex flex-col items-center">
-        <div className="text-title">축하 연락하기</div>
-        <div className="text-mini text-rosegray opacity-80">직접 축하의 마음을 전해보세요</div>
-        <Tabs
-          className="mt-7 text-mini" 
-          items={[
-            { name: '신랑에게', elem: ContactItem(weddingHosts, WeddingHostType.LEFT) },
-            { name: '신부에게', elem: ContactItem(weddingHosts, WeddingHostType.RIGHT) },
-          ]} 
-        />
-        
-      </div>
+    <div className="py-15 flex flex-col items-center bg-neutral-100">
+      <div className="text-title">축하 연락하기</div>
+      <div className="text-mini text-rosegray opacity-70">직접 축하의 마음을 전해보세요</div>
+      <Tabs
+        className="mt-8 text-mini" 
+        items={[
+          { name: '신랑에게', elem: ContactItem(weddingHosts, WeddingHostType.LEFT) },
+          { name: '신부에게', elem: ContactItem(weddingHosts, WeddingHostType.RIGHT) },
+        ]} 
+      />
     </div>
   );
 }

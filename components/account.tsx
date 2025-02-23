@@ -1,10 +1,8 @@
-import Button from "@/common/button";
-import Tabs from "./common/tab";
 import type { JSX } from "react";
 
 
 interface Account {
-  type: 'right' | 'left';
+  type: string; // 'right' | 'left';
   name: string;
   description: string;
   bank: string;
@@ -29,38 +27,16 @@ const AccountItem = ({ account }: { account: Account }): JSX.Element => {
   )
 }
 
-export const Account = () => {
-  const accounts: Account[] = [
-    {
-      type: 'left',
-      name: '김OO',
-      description: '신랑',
-      bank: '국민은행',
-      number: '1234-2345666',
-    },
-    {
-      type: 'left',
-      name: '박OO',
-      description: '신랑 아버지',
-      bank: '신한은행',
-      number: '12346-4345',
-    },
-    {
-      type: 'right',
-      name: '이OO',
-      description: '신부',
-      bank: '농협은행 ',
-      number: '234567',
-    },
-  ]
-
+export const Account = ({ accounts = [] }: { accounts: Account[]; }) => {
+  if (accounts.length === 0) {
+    return;
+  }
   return (
-    <div className="py-10 flex flex-col items-center">
-      <div className="text-title py-7">마음 전하실 곳</div>
+    <div className="py-15 flex flex-col items-center">
+      <div className="text-title pb-7">마음 전하실 곳</div>
       {/* collapse */}
       <div className="mx-2 p-3 bg-rosegray">
-        <AccountItem account={accounts[0]} />
-        <AccountItem account={accounts[1]} />
+        {accounts.map((account, idx) =>  <AccountItem key={idx} account={account} />)}
       </div>
         
     </div>

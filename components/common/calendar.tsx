@@ -15,15 +15,15 @@ const Calendar = ({ year, month, dDay, className = "" }: CalendarProps) => {
       { length: new Date(year, month + 1, 0).getDate() }, 
       (_, i) => i + 1
     )
-    const { calendar } =  allDays.reduce((acc, day: number) => {
+    const { week: lastWeek, calendar } = allDays.reduce((acc, day: number) => {
       const newWeek = [...acc.week, String(day)];
       return {
         week: newWeek.length === 7 ? [] : newWeek,
         calendar: newWeek.length === 7 ? [...acc.calendar, newWeek]: acc.calendar,
       }
-    }, { week: Array(String(firstDay)).fill(""), calendar: [] as string[][] });
+    }, { week: Array(firstDay).fill(""), calendar: [] as string[][] });
   
-    return calendar;
+    return [...calendar, lastWeek];
   };
   const calendarList = [['일', '월', '화', '수', '목', '금', '토'], ...generateCalendar(year, month)];
 
