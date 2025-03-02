@@ -1,18 +1,21 @@
+import type { JSX } from "react";
+
 interface ButtonProps {
-  type?: 'submit' | 'mini'
-  text: string;
+  type?: 'submit' | 'icon'
+  text?: string;
+  icon?: JSX.Element;
   onClick: () => void;
   className?: string;
 }
 
-const Button = ({ type = 'submit', text, onClick, className = "" }: ButtonProps) => {
-  if (type === 'mini') {
+const Button = ({ type = 'submit', text = "", icon, onClick, className = "" }: ButtonProps) => {
+  if (type === 'icon') {
     return (
       <button
         onClick={onClick}
-        className={`px-2 rounded-sm bg-white hover:bg-gray-50 ${className}`}
+        className={`px-1 rounded-sm hover:opacity-70 ${className}`}
       >
-        {text}
+        {icon}
       </button>
     );
   }
@@ -20,8 +23,10 @@ const Button = ({ type = 'submit', text, onClick, className = "" }: ButtonProps)
   return (
     <button
       onClick={onClick}
-      className={`m-2 px-7 py-2 rounded-md text-white bg-rosegray hover:bg-rose-200 ${className}`}
+      className={`m-1 p-2 rounded-md border border-neutral-300 hover:bg-neutral-200 ${className}`}
     >
+      {icon && icon}
+      {icon && text && <div className="pr-1" />}
       {text}
     </button>
   );

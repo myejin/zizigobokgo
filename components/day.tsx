@@ -10,10 +10,10 @@ export const Day = ({ brideName, groomName, date }: { brideName: string; groomNa
   const diffDay = dayjs(date).startOf("day").diff(dayjs().startOf("day"), "day");
 
   return (
-    <div className="my-5 py-10 flex flex-col items-center bg-neutral-50">
+    <div className="py-12 flex flex-col items-center bg-neutral-light text-mini">
       <div className="mb-7 text-title">Wedding Day</div>
-      <div className="text-default">{Util.getFormattedDate(date)}</div>
-      <div className="text-mini text-gray-400">{Util.getFormattedDate(date, "en")}</div>
+      <div>{Util.getFormattedDate(date)}</div>
+      <div className="text-mini-gray">{Util.getFormattedDate(date, "en")}</div>
       <Calendar 
         year={date.getFullYear()} 
         month={date.getMonth()} 
@@ -21,8 +21,15 @@ export const Day = ({ brideName, groomName, date }: { brideName: string; groomNa
         className="border-y border-gray-200 my-5 text-mini"
       />
       {brideName && groomName && (
-        <div className="text-mini">
-          {brideName} 🩶 {groomName} 결혼식 {diffDay > 0 ? `${diffDay}일 전` : "당일"}
+        <div className="pt-1 flex">
+          {diffDay > 0 && (
+            <>
+              <div className="px-1">{brideName} 🩶 {groomName} 결혼식이</div>
+              <div className="text-rosegray">{diffDay}</div>
+              <div>일 남았습니다.</div>
+            </>
+          )}
+          {diffDay === 0 && <div>{brideName} 🩶 {groomName} 결혼식 당일입니다.</div>}
         </div>
       )}
     </div>

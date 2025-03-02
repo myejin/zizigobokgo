@@ -1,32 +1,45 @@
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import Button from "./common/button";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCopy } from '@fortawesome/free-solid-svg-icons';
 
 export const Location = ({ name, address, tips = [] }: { name: string; address: string; tips?: any[] }) => {
   if (!(name && address)) {
     return;
   }
   return (
-    <div className="py-10 flex flex-col items-center">
+    <div className="py-10 flex flex-col items-center bg-neutral">
       <div className="mb-7 text-title">Location</div>
-      <div className="text-default">{name}</div>
-      <div className="text-mini text-gray-500">{address}</div>
-      <div className="my-5 flex flex-col items-center">
+      <div className="text-default pb-1">{name}</div>
+      <div className="flex text-mini-gray justify-between">
+        <div>{address}</div>
+        <FontAwesomeIcon 
+          icon={faCopy}
+          className="px-2"
+        />
+      </div>
+      <div className="my-5 flex flex-col items-center text-mini">
         {/* TODO: kakao map https://react-kakao-maps-sdk.jaeseokim.dev/docs/intro */}
-        <div className="my-5 w-80 h-80 bg-gray-100">
-        </div>
         <div>
           <Button
-            text={"<> TMAP"}
+            text={"<> 티맵"}
+            className="w-25"
+            onClick={() => console.log('hello')} // TODO
+          />
+          <Button
+            text={"<> 카카오"}
+            className="w-25"
             onClick={() => console.log('hello')} // TODO
           />
           <Button
             text={"<> 네이버"}
+            className="w-25"
             onClick={() => console.log('hello')} // TODO
           />
         </div>
       </div>
       {tips.length === 0 && (
-        <div className="w-3/4 my-5 text-mini">
+        <div className="w-3/4 max-w-[450px] my-3 text-mini">
           <div className="text-rosegray pb-2">자차</div>
           <div>네비게이션: '전쟁기념관 북문' 으로 검색</div>
           <div className="border-b my-5 text-rosegray"></div>

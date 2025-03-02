@@ -1,6 +1,8 @@
 import Button from "@/common/button";
 import Tabs from "./common/tab";
 import type { JSX } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone, faMessage } from "@fortawesome/free-solid-svg-icons";
 
 enum WeddingHostType {
   RIGHT = 'right',
@@ -28,21 +30,20 @@ const ContactItem = (hosts: WeddingHost[], type: WeddingHostType.LEFT | WeddingH
   ]
 
   return (
-    <div className="px-6 py-4 bg-white rounded-md shadow-xl">
+    <div className="px-6 py-4 bg-neutral-light rounded-md shadow-sm">
       {names.map((name, idx) => (
         <div className="my-1 flex justify-between" key={idx}>
           <div className="w-35">{name}</div>
           <div className="flex gap-x-1">
             <div className="text-gray-400">•••</div>
             <Button 
-              type="mini"
-              text={"📞"} 
-              className="bg-white"
+              type="icon"
+              icon={<FontAwesomeIcon icon={faPhone} className="text-mini-gray" />}
               onClick={() => console.log('hello')} // TODO
             />
             <Button 
-              type="mini"
-              text={"💬"} 
+              type="icon"
+              icon={<FontAwesomeIcon icon={faMessage} className="text-mini-gray" />}
               onClick={() => console.log('hello')} // TODO
             />
           </div>
@@ -57,14 +58,11 @@ export const Contact = ({ weddingHosts = [] }: { weddingHosts?: WeddingHost[] })
     return;
   }
   return (
-    <div className="py-15 flex flex-col items-center bg-neutral-100">
-      <div className="text-title">축하 연락하기</div>
-      <div className="text-mini text-rosegray opacity-70">직접 축하의 마음을 전해보세요</div>
+    <div className="pb-10 flex flex-col items-center bg-neutral text-mini">
       <Tabs
-        className="mt-8 text-mini" 
         items={[
-          { name: '신랑에게', elem: ContactItem(weddingHosts, WeddingHostType.LEFT) },
-          { name: '신부에게', elem: ContactItem(weddingHosts, WeddingHostType.RIGHT) },
+          { name: '신랑에게 연락하기', elem: ContactItem(weddingHosts, WeddingHostType.LEFT) },
+          { name: '신부에게 연락하기', elem: ContactItem(weddingHosts, WeddingHostType.RIGHT) },
         ]} 
       />
     </div>

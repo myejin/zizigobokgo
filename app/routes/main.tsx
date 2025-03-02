@@ -1,16 +1,18 @@
 import { Footer } from "@/footer";
 import { MainPhoto } from "@/main_photo";
-import { Info } from "@/info";
+import { ExtraInfo } from "@/extra_info";
 import { Invitation } from "@/invitation";
 import { Contact } from "@/contact";
 import { Day } from "@/day";
 import { Location } from "@/location";
 import { PhotoBook } from "@/photo_book";
 import { Account } from "@/account";
+import { Info } from "@/info";
 
 const Main = () => {
   const item = {
     title: "choigomgom & parkheehee",
+    bgmUrl: "./default_bgm.wav",
     brideName: "최곰곰",
     groomName: "박희희",
     mainPhotoUrl: "./default_main_photo.jpeg",
@@ -94,40 +96,42 @@ const Main = () => {
     extraInfos: [
       {
         name: "신부대기실 및 연회장",
-        message: "신부대기실은 4층에 위치하고 있으며\n연회장은 3층에 위치하고 있습니다.\n.\n여유있게 도착하셔서\n신부와 함께 예쁜 추억을 남겨주세요 :)",
+        message: "신부대기실은 4층에 위치하고 있으며\n연회장은 3층에 위치하고 있습니다.\n\n여유있게 도착하셔서\n신부와 함께 예쁜 추억을 남겨주세요 :)",
       },
     ]
   }
 
   // TODO
-  // account collapse, location tips 정리 필요 
+  // location tips 정리 필요 
   // 전화/문자 바로가기
   // 지도 첨부
-  // url 복사하기, 카카오톡 공유하기
-  // 비지엠 첨부
+  // 카카오톡 공유하기
 
   return (
     <>
       <MainPhoto 
-        title={item.title}
         photoUrl={item.mainPhotoUrl}
-        date={item.date} 
-        locationName={item.location.name}
+        bgmUrl={item.bgmUrl}
+      />
+      <Info 
+        title={item.title} 
+        locationName={item.location.name} 
+        date={item.date}
       />
       <Invitation message={item.message} />
       <Contact weddingHosts={item.weddingHosts} />
       <PhotoBook photoUrls={item.photoUrls} />
-      <Day 
-        brideName={item.brideName} 
-        groomName={item.groomName} 
-        date={item.date}
-      />
       <Location 
         name={item.location.name} 
         address={item.location.address} 
         tips={item.location.tips}
       />
-      <Info infos={item.extraInfos} />
+      <ExtraInfo infos={item.extraInfos} />
+      <Day 
+        brideName={item.brideName} 
+        groomName={item.groomName} 
+        date={item.date}
+      />
       <Account accounts={item.accounts} />
       <Footer />
     </>

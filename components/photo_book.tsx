@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () => void }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -11,8 +11,8 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
   };
 
   return (
-    <div className="fixed inset-0 flex items-center">
-      <div className="flex flex-col bg-white text-gray-700">
+    <div className="fixed inset-0 flex items-center bg-white max-w-[450px] mx-auto">
+      <div className="flex flex-col text-gray-700">
         <button 
           onClick={onClose} 
           className="flex justify-end mx-3 my-2" 
@@ -47,6 +47,14 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
 export const PhotoBook = ({ photoUrls = [] }: { photoUrls?: string[] }) => {
   const preViewLength = 8;
   const [viewModal, setModalAll] = useState(false);
+
+  useEffect(() => {
+    if (viewModal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [viewModal]);
   
   if (photoUrls.length === 0) {
     return;
@@ -63,7 +71,7 @@ export const PhotoBook = ({ photoUrls = [] }: { photoUrls?: string[] }) => {
         ))}
         <button
           onClick={() => setModalAll(true)}
-          className="w-25 h-25"
+          className="w-25 h-25 text-mini"
         >
           + more
         </button>

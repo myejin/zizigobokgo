@@ -19,7 +19,7 @@ const Tabs = ({ items = [], className = "" }: TabsProps) => {
           items.map((item, idx) => (
             <button
               key={idx}
-              className={`px-4 py-1 ${activeTabIdx === idx ? 'border-b' : 'text-gray-400'}`}
+              className={`px-7 py-1 ${activeTabIdx === idx ? 'border-b' : 'text-gray-400'}`}
               onClick={() => setActiveTabIdx(idx)}
             >
               {item.name}

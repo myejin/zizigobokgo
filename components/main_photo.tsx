@@ -1,13 +1,28 @@
-import { Util } from "utils";
+import { useRef, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPause, faPlay, faMusic } from "@fortawesome/free-solid-svg-icons";
+
 
 interface MainPhotoProps {
-  title: string;
   photoUrl?: string;
-  date: Date;
-  locationName: string;
+  bgmUrl?: string;
 }
 
-export const MainPhoto = ({ title, photoUrl = "", date, locationName }: MainPhotoProps) => {
+export const MainPhoto = ({ photoUrl = "", bgmUrl = "" }: MainPhotoProps) => {
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  const toggleAudioPlayer = () => {
+    if (audioRef.current) {
+      if (isAudioPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsAudioPlaying(!isAudioPlaying);
+    }
+  };
+
   if (!photoUrl) {
     return;
   }
@@ -18,13 +33,16 @@ export const MainPhoto = ({ title, photoUrl = "", date, locationName }: MainPhot
         alt="main_photo"
         className="w-full max-w-2xl h-auto"
       />
-      <div className="absolute inset-0 my-15 flex flex-col justify-between text-white">
-        <div className="text-title flex justify-center gap-x-3">{title}</div>
-        <div className="flex flex-col items-center">
-          <div>{Util.getFormattedDate(date)}</div>
-          <div>{locationName}</div>
+      {bgmUrl && (
+        <div 
+          className="absolute right-3 top-2 text-mini cursor-pointer" 
+          onClick={toggleAudioPlayer}
+        >
+          <FontAwesomeIcon icon={faMusic} className="pr-1" />
+          <FontAwesomeIcon icon={isAudioPlaying ? faPause : faPlay} />
+          <audio ref={audioRef} src={bgmUrl} loop />
         </div>
-      </div>
+      )}
     </div>
   );
 }
