@@ -44,7 +44,7 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
 };
 
 
-export const PhotoBook = ({ photoUrls = [] }: { photoUrls?: string[] }) => {
+export const Gallery = ({ photoUrls = [] }: { photoUrls?: string[] }) => {
   const preViewLength = 8;
   const [viewModal, setModalAll] = useState(false);
 
@@ -61,7 +61,7 @@ export const PhotoBook = ({ photoUrls = [] }: { photoUrls?: string[] }) => {
   }
   return (
     <div className="py-15 flex flex-col items-center">
-      <div className="mb-10 text-title">Photo</div>
+      <div className="mb-5 text-default">웨딩 갤러리</div>
       
       <div className="grid grid-cols-3 gap-1">
         {photoUrls.slice(0, preViewLength).map((url, idx) => (

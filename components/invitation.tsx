@@ -10,7 +10,6 @@ export const Invitation = ({ message = "" }: { message?: string; }) => {
           alt="invitation"
           className="w-8 pb-2 max-w-3xl h-auto"
         />
-        <div>INVITATION</div>
       </div>
       {message.split("\n").map((text, idx) => {
           if (!text) {

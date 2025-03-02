@@ -11,7 +11,7 @@ export const Day = ({ brideName, groomName, date }: { brideName: string; groomNa
 
   return (
     <div className="py-12 flex flex-col items-center bg-neutral-light text-mini">
-      <div className="mb-7 text-title">Wedding Day</div>
+      <div className="mb-7 text-default">웨딩 일정</div>
       <div>{Util.getFormattedDate(date)}</div>
       <div className="text-mini-gray">{Util.getFormattedDate(date, "en")}</div>
       <Calendar 

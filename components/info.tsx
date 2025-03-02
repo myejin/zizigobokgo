@@ -6,7 +6,6 @@ export const Info = ({ title, locationName, date }: { title: string; locationNam
   }
   return (
     <div className="py-17 text-center">
-      <div className="pb-3">{title}</div>
       <div className="pb-1 text-mini">{locationName}</div>
       <div className="pb-1 text-mini">{Util.getFormattedDate(date)}</div>
     </div>

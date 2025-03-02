@@ -59,10 +59,11 @@ export const Contact = ({ weddingHosts = [] }: { weddingHosts?: WeddingHost[] })
   }
   return (
     <div className="pb-10 flex flex-col items-center bg-neutral text-mini">
+      <div className="text-default py-1">연락하기</div>
       <Tabs
         items={[
-          { name: '신랑에게 연락하기', elem: ContactItem(weddingHosts, WeddingHostType.LEFT) },
-          { name: '신부에게 연락하기', elem: ContactItem(weddingHosts, WeddingHostType.RIGHT) },
+          { name: '신랑에게', elem: ContactItem(weddingHosts, WeddingHostType.LEFT) },
+          { name: '신부에게', elem: ContactItem(weddingHosts, WeddingHostType.RIGHT) },
         ]} 
       />
     </div>

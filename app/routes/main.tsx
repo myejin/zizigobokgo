@@ -5,11 +5,33 @@ import { Invitation } from "@/invitation";
 import { Contact } from "@/contact";
 import { Day } from "@/day";
 import { Location } from "@/location";
-import { PhotoBook } from "@/photo_book";
+import { Gallery } from "@/gallery";
 import { Account } from "@/account";
 import { Info } from "@/info";
+import { useEffect, useState, type JSX } from "react";
+import { Header } from "@/header";
 
 const Main = () => {
+  const [flowers, setFlowers] = useState<JSX.Element[]>([]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const flower = (
+        <div
+          key={Math.random()}
+          className="flower"
+          style={{
+            left: `${Math.random() * 100}vw`,
+            animationDuration: `${Math.random() * 5 + 2}s`,
+          }}
+        />
+      );
+      setFlowers((flowers) => [...flowers, flower]);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+  
   const item = {
     title: "choigomgom & parkheehee",
     bgmUrl: "./default_bgm.wav",
@@ -17,7 +39,7 @@ const Main = () => {
     groomName: "박희희",
     mainPhotoUrl: "./default_main_photo.jpeg",
     // src="https://media.zizigobokgo.xyz/123/main_photo.png"
-    date: new Date("2025-02-27T12:30:00"),
+    date: new Date("2025-03-27T12:30:00"),
     location: {
       name: "서울AAA컨벤션 아나까나홀",
       address: "서울시 강남구 테헤란로 1234",
@@ -109,10 +131,12 @@ const Main = () => {
 
   return (
     <>
-      <MainPhoto 
-        photoUrl={item.mainPhotoUrl}
+      {flowers}
+      <Header 
+        title={item.title} 
         bgmUrl={item.bgmUrl}
       />
+      <MainPhoto photoUrl={item.mainPhotoUrl} />
       <Info 
         title={item.title} 
         locationName={item.location.name} 
@@ -120,18 +144,18 @@ const Main = () => {
       />
       <Invitation message={item.message} />
       <Contact weddingHosts={item.weddingHosts} />
-      <PhotoBook photoUrls={item.photoUrls} />
+      <Gallery photoUrls={item.photoUrls} />
       <Location 
         name={item.location.name} 
         address={item.location.address} 
         tips={item.location.tips}
       />
-      <ExtraInfo infos={item.extraInfos} />
       <Day 
         brideName={item.brideName} 
         groomName={item.groomName} 
         date={item.date}
       />
+      <ExtraInfo infos={item.extraInfos} />
       <Account accounts={item.accounts} />
       <Footer />
     </>

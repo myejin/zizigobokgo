@@ -31,8 +31,6 @@ export const Footer = () => {
           <div>링크 복사하기</div>
         </button>
       </div>
-      {/* <div className="py-5 gap-x-3 text-mini">
-      </div> */}
       <footer className="mt-30 mb-1 text-center text-[8px] text-gray-400">
         COPYRIGHT(C) 2025 김혜진 ALL RIGHTS RESERVED
       </footer>

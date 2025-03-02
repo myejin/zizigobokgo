@@ -43,10 +43,10 @@ export const Account = ({ accounts = [] }: { accounts: Account[]; }) => {
   const rightAccounts = accounts.filter(({ type }) => type === "right");
 
   return (
-    <div className="pt-15 pb-10 flex flex-col items-center bg-neutral">
-      <div>마음 전하실 곳</div>
+    <div className="pb-15 flex flex-col items-center bg-neutral">
+      <div className="text-default">마음 전하실 곳</div>
       <div className="py-7 flex flex-col items-center text-mini-gray">
-        <div>직접 축하를 전하지 못하는 분들을 위해</div>
+        <div>직접 축하가 어려운 분들을 위해</div>
         <div>계좌번호를 기재하였습니다.</div>
         <div>넓은 마음으로 양해 부탁드립니다.</div>
         <br />
@@ -62,11 +62,9 @@ export const Account = ({ accounts = [] }: { accounts: Account[]; }) => {
             onClick={() => setOpenStates([!openStates[0], openStates[1]])}
           />
         </div>
-        {openStates[0] && (
-          <div className="p-3 bg-rosegray rounded-b-md">
-            {leftAccounts.map((account, idx) =>  <AccountItem key={idx} account={account} />)}
-          </div>
-        )}
+        <div className={`collapse-content ${openStates[0] ? 'open' : ''} px-3 bg-rosegray rounded-b-md`}>
+          {leftAccounts.map((account, idx) =>  <AccountItem key={idx} account={account} />)}
+        </div>
       </div>
       <div className="mt-2" />
       <div className="bg-white rounded-md text-mini w-5/6 max-w-[450px]">
@@ -78,13 +76,11 @@ export const Account = ({ accounts = [] }: { accounts: Account[]; }) => {
             onClick={() => setOpenStates([openStates[0], !openStates[1]])}
           />
         </div>
-        {openStates[1] && (
-          <div className="p-3 bg-rosegray rounded-b-md">
+        <div className={`collapse-content ${openStates[1] ? 'open' : ''} px-3 bg-rosegray rounded-b-md`}>
           {rightAccounts.map((account, idx) =>  <AccountItem key={idx} account={account} />)}
         </div>
-        )}
       </div>
-      <div className="mt-10 border-b w-10" />
+      <div className="mt-15 border-b w-10" />
     </div>
   );
 }

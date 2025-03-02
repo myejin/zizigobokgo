@@ -9,7 +9,7 @@ export const Location = ({ name, address, tips = [] }: { name: string; address: 
   }
   return (
     <div className="py-10 flex flex-col items-center bg-neutral">
-      <div className="mb-7 text-title">Location</div>
+      <div className="mb-7 text-default">오시는 길</div>
       <div className="text-default pb-1">{name}</div>
       <div className="flex text-mini-gray justify-between">
         <div>{address}</div>

@@ -6,9 +6,7 @@ export const ExtraInfo = ({ infos = [] }: { infos: { name?: string; message?: st
   }
   return (
     <div className="pt-10 pb-15 flex flex-col items-center bg-neutral">
-      <div className="mb-10 border-b w-10" />
-      <div className="text-title">INFORMATION</div>
-      <div className="mb-10 text-mini-gray">저희 웨딩에 대한 사전 안내를 드립니다.</div>
+      <div className="mb-10 text-default">사전 안내</div>
       <div className="py-7 px-10 bg-white rounded-md border border-gray-300 text-center text-mini text-gray-700">
         {infos.map(({ name, message }, idx) => {
           if (!message) {
@@ -27,6 +25,7 @@ export const ExtraInfo = ({ infos = [] }: { infos: { name?: string; message?: st
           );
         })}
       </div>
+      <div className="mt-15 border-b w-10" />
     </div>
   );
 }

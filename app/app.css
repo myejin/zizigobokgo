@@ -1,16 +1,25 @@
 @import "tailwindcss";
 
-@font-face{
- font-family: 'LotteMartDream';
- font-style: normal;
- font-weight: 400;
- src: 
-  url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff2') format('woff2'),
-  url('//cdn.jsdelivr.net/korean-webfonts/1/corps/lottemart/LotteMartDream/LotteMartDreamMedium.woff') format('woff');
+@font-face {
+  font-family: 'GowunBatang-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunBatang-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @theme {
-  --font-sans: 'LotteMartDream'
+  --font-sans: 'GowunBatang-Regular'
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 html,
@@ -20,6 +29,26 @@ body {
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
+}
+
+.flower {
+  position: fixed;
+  top: -100px;
+  width: 15px;
+  height: 15px;
+  background-image: url('./mini_flower.png');
+  background-size: cover;
+  animation: fall linear infinite;
+  z-index: 1000;
+}
+.collapse-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 1s ease-out;
+}
+
+.collapse-content.open {
+  max-height: 1000px;
 }
 
 .bg-rosegray {
