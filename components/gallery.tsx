@@ -11,7 +11,7 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
   };
 
   return (
-    <div className="fixed inset-0 flex items-center bg-white max-w-[450px] mx-auto">
+    <div className="fixed inset-0 flex items-center max-w-[450px] mx-auto z-1000">
       <div className="flex flex-col text-gray-700">
         <button 
           onClick={onClose} 
@@ -29,7 +29,7 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
           <img 
             src={photoUrls[currentIndex]} 
             alt={`photo_${currentIndex}`} 
-            className="max-w-full h-auto" 
+            className="w-full-or-max" 
           />
           <button 
             onClick={goNext} 

@@ -23,6 +23,9 @@ const ContactItem = (hosts: WeddingHost[], type: WeddingHostType.LEFT | WeddingH
   const findNamesByType = (hosts: WeddingHost[], type: string) => {
     return hosts.find((host) => host.type === type)?.name ?? ''
   }
+  const findPhoneByName = (hosts: WeddingHost[], name: string) => {
+    return hosts.find((host) => host.name === name)?.phone ?? ''
+  }
   const names = [
     findNamesByType(hosts, type),
     findNamesByType(hosts, `${type}_left`),
@@ -39,12 +42,16 @@ const ContactItem = (hosts: WeddingHost[], type: WeddingHostType.LEFT | WeddingH
             <Button 
               type="icon"
               icon={<FontAwesomeIcon icon={faPhone} className="text-mini-gray" />}
-              onClick={() => console.log('hello')} // TODO
+              onClick={() => {
+                window.location.href = `tel:${findPhoneByName(hosts, name)}`;
+              }}
             />
             <Button 
               type="icon"
               icon={<FontAwesomeIcon icon={faMessage} className="text-mini-gray" />}
-              onClick={() => console.log('hello')} // TODO
+              onClick={() => {
+                window.location.href = `sms:${findPhoneByName(hosts, name)}`;
+              }}
             />
           </div>
         </div>

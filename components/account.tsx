@@ -12,6 +12,16 @@ interface Account {
 }
 
 const AccountItem = ({ account }: { account: Account }): JSX.Element => {
+  const [isClipboardCopied, setIsClipboardCopied] = useState(false);
+
+  const copyAccountNumber = (accountNumber: string) => {
+    setIsClipboardCopied(true)
+    navigator.clipboard.writeText(accountNumber)
+    setTimeout(() => {
+      setIsClipboardCopied(false)
+    }, 200);
+  };
+
   return (
     <div className="my-3 px-5 py-4 bg-white rounded-md">
       <div className="px-1 pb-3 flex justify-between">
@@ -25,7 +35,8 @@ const AccountItem = ({ account }: { account: Account }): JSX.Element => {
         </div>
         <FontAwesomeIcon 
           icon={faCopy}
-          className="flex justify-end text-gray-400"
+          className={`flex justify-end cursor-pointer ${isClipboardCopied ? "text-gray-900" : "text-gray-400"}`}
+          onClick={() => copyAccountNumber(account.number.replaceAll('-', ''))}
         />
       </div>
     </div>
@@ -43,7 +54,7 @@ export const Account = ({ accounts = [] }: { accounts: Account[]; }) => {
   const rightAccounts = accounts.filter(({ type }) => type === "right");
 
   return (
-    <div className="pb-15 flex flex-col items-center bg-neutral">
+    <div className="pt-15 flex flex-col items-center bg-neutral">
       <div className="text-default">마음 전하실 곳</div>
       <div className="py-7 flex flex-col items-center text-mini-gray">
         <div>직접 축하가 어려운 분들을 위해</div>
@@ -63,7 +74,7 @@ export const Account = ({ accounts = [] }: { accounts: Account[]; }) => {
           />
         </div>
         <div className={`collapse-content ${openStates[0] ? 'open' : ''} px-3 bg-rosegray rounded-b-md`}>
-          {leftAccounts.map((account, idx) =>  <AccountItem key={idx} account={account} />)}
+          {leftAccounts.map((account, idx) => <AccountItem key={idx} account={account} />)}
         </div>
       </div>
       <div className="mt-2" />
@@ -77,7 +88,7 @@ export const Account = ({ accounts = [] }: { accounts: Account[]; }) => {
           />
         </div>
         <div className={`collapse-content ${openStates[1] ? 'open' : ''} px-3 bg-rosegray rounded-b-md`}>
-          {rightAccounts.map((account, idx) =>  <AccountItem key={idx} account={account} />)}
+          {rightAccounts.map((account, idx) => <AccountItem key={idx} account={account} />)}
         </div>
       </div>
       <div className="mt-15 border-b w-10" />

@@ -39,7 +39,7 @@ body {
   background-image: url('./mini_flower.png');
   background-size: cover;
   animation: fall linear infinite;
-  z-index: 1000;
+  z-index: 100;
 }
 .collapse-content {
   max-height: 0;
@@ -51,6 +51,11 @@ body {
   max-height: 1000px;
 }
 
+.w-full-or-max {
+  @apply w-full;
+  @apply max-w-lg;
+  @apply h-auto;
+}
 .bg-rosegray {
   @apply bg-[#E9A5A5];
   @apply opacity-80

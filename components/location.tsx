@@ -1,42 +1,72 @@
-import { Map, MapMarker } from "react-kakao-maps-sdk";
 import Button from "./common/button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from "react";
+import { getTmapImage } from "externals";
 
 export const Location = ({ name, address, tips = [] }: { name: string; address: string; tips?: any[] }) => {
+  const [mapImage, setMapImage] = useState<string>("");
+  const [isClipboardCopied, setIsClipboardCopied] = useState(false);
+  
   if (!(name && address)) {
     return;
   }
+
+  const setTMap = async () => {
+    const image = await getTmapImage(126.9768, 37.5665);
+    setMapImage(image);
+  };
+  
+  useEffect(() => {
+    setTMap();
+  }, []);
+
+  const openTmapApp = (address: string) => {
+    const tmapUrl = `tmap://search?name=${encodeURIComponent(address)}`;
+    window.location.href = tmapUrl;
+  };
+
+  const copyAddress = (address: string) => {
+    setIsClipboardCopied(true)
+    navigator.clipboard.writeText(address)
+    setTimeout(() => {
+      setIsClipboardCopied(false)
+    }, 200);
+  };
+
   return (
     <div className="py-10 flex flex-col items-center bg-neutral">
       <div className="mb-7 text-default">오시는 길</div>
       <div className="text-default pb-1">{name}</div>
-      <div className="flex text-mini-gray justify-between">
-        <div>{address}</div>
+      <div className="flex justify-between">
+        <div className="text-mini-gray">{address}</div>
         <FontAwesomeIcon 
           icon={faCopy}
-          className="px-2"
+          className={`px-2 text-mini cursor-pointer ${isClipboardCopied ? "text-gray-400" : "text-mini-gray"}`}
+          onClick={() => copyAddress(address)}
         />
       </div>
-      <div className="my-5 flex flex-col items-center text-mini">
-        {/* TODO: kakao map https://react-kakao-maps-sdk.jaeseokim.dev/docs/intro */}
-        <div>
-          <Button
-            text={"<> 티맵"}
-            className="w-25"
-            onClick={() => console.log('hello')} // TODO
-          />
-          <Button
-            text={"<> 카카오"}
-            className="w-25"
-            onClick={() => console.log('hello')} // TODO
-          />
-          <Button
-            text={"<> 네이버"}
-            className="w-25"
-            onClick={() => console.log('hello')} // TODO
+      {mapImage && (
+        <div className="p-5">
+          <img 
+            src={mapImage} 
+            alt="Map" 
+            className="w-full-or-max"
+            onClick={() => openTmapApp(address)}
           />
         </div>
+      )}
+      <div className="mb-5 flex items-center text-mini gap-x-2">
+        <Button
+          text={"<> 카카오"}
+          className="w-30"
+          onClick={() => window.open(`https://map.kakao.com/link/search/${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
+        />
+        <Button
+          text={"<> 네이버"}
+          className="w-30"
+          onClick={() => window.open(`https://map.naver.com/p/search/${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
+        />
       </div>
       {tips.length === 0 && (
         <div className="w-3/4 max-w-[450px] my-3 text-mini">

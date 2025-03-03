@@ -11,25 +11,29 @@ import { Info } from "@/info";
 import { useEffect, useState, type JSX } from "react";
 import { Header } from "@/header";
 
+
 const Main = () => {
   const [flowers, setFlowers] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      const flower = (
-        <div
-          key={Math.random()}
-          className="flower"
-          style={{
-            left: `${Math.random() * 100}vw`,
-            animationDuration: `${Math.random() * 5 + 2}s`,
-          }}
-        />
-      );
-      setFlowers((flowers) => [...flowers, flower]);
-    }, 2000);
-
-    return () => clearInterval(interval);
+    const interval = setInterval(() => setFlowers((prev) => {
+      if (prev.length > 20) {
+        clearInterval(interval);
+        return prev;
+      } else  {
+        const flower = (
+          <div
+            key={Math.random()}
+            className="flower"
+            style={{
+              left: `${Math.random() * 100}vw`,
+              animationDuration: `${Math.random() * 3 + 2}s`,
+            }}
+          />
+        );
+        return [...prev, flower];
+      }
+    }), 2000);
   }, []);
   
   const item = {
@@ -124,10 +128,8 @@ const Main = () => {
   }
 
   // TODO
-  // location tips 정리 필요 
-  // 전화/문자 바로가기
-  // 지도 첨부
-  // 카카오톡 공유하기
+  // location tips 정리 필요
+  // edit mode
 
   return (
     <>
@@ -144,20 +146,24 @@ const Main = () => {
       />
       <Invitation message={item.message} />
       <Contact weddingHosts={item.weddingHosts} />
-      <Gallery photoUrls={item.photoUrls} />
-      <Location 
-        name={item.location.name} 
-        address={item.location.address} 
-        tips={item.location.tips}
-      />
       <Day 
         brideName={item.brideName} 
         groomName={item.groomName} 
         date={item.date}
       />
+      <Location 
+        name={item.location.name} 
+        address={item.location.address} 
+        tips={item.location.tips}
+      />
+      <Gallery photoUrls={item.photoUrls} />
       <ExtraInfo infos={item.extraInfos} />
       <Account accounts={item.accounts} />
-      <Footer />
+      <Footer 
+        title={item.title} 
+        date={item.date}
+        imageUrl={item.mainPhotoUrl} 
+      />
     </>
   )
 }
