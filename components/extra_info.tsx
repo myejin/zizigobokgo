@@ -1,20 +1,21 @@
 import React from "react";
 
-export const ExtraInfo = ({ infos = [] }: { infos: { name?: string; message?: string; }[] }) => {
+export const ExtraInfo = ({ infos = [] }: { infos: { title?: string; message?: string; }[] }) => {
   if (infos.length === 0) {
     return;
   }
+  console.log(infos);
   return (
     <div className="pt-15 flex flex-col items-center bg-neutral">
       <div className="mb-7 text-default">사전 안내</div>
       <div className="py-7 px-10 bg-white rounded-md border border-gray-300 text-center text-mini text-gray-700">
-        {infos.map(({ name, message }, idx) => {
+        {infos.map(({ title, message }, idx) => {
           if (!message) {
             return;
           }
           return (
             <React.Fragment key={idx}>
-              {name && <div key={`name_${idx}`} className="text-default pb-5">{name}</div>}
+              {title && <div key={`name_${idx}`} className="text-default pb-5">{title}</div>}
               {message.split("\n").map((line, lineIdx) => {
                 if (!line) {
                   return (<br key={`line_${lineIdx}`} />);

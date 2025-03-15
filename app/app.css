@@ -82,3 +82,8 @@ body {
 .text-mini {
   @apply text-sm lg:text-base;
 }
+
+.text-tiny-gray {
+  @apply text-[12px] lg:text-sm;
+  @apply text-gray-500;
+}

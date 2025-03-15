@@ -56,7 +56,7 @@ export const Account = ({ accounts = [] }: { accounts: Account[]; }) => {
   return (
     <div className="pt-15 flex flex-col items-center bg-neutral">
       <div className="text-default">마음 전하실 곳</div>
-      <div className="py-7 flex flex-col items-center text-mini-gray">
+      <div className="py-7 flex flex-col items-center text-tiny-gray">
         <div>직접 축하가 어려운 분들을 위해</div>
         <div>계좌번호를 기재하였습니다.</div>
         <div>넓은 마음으로 양해 부탁드립니다.</div>
@@ -65,7 +65,7 @@ export const Account = ({ accounts = [] }: { accounts: Account[]; }) => {
         <div>좋은 부부의 모습으로 보답하겠습니다.</div>
       </div>
       <div className="bg-white rounded-md text-mini w-5/6 max-w-[450px]">
-        <div className="p-3 flex justify-between items-center text-mini">
+        <div className="py-3 px-5 flex justify-between items-center text-mini">
           <div>신랑측에게</div>
           <FontAwesomeIcon 
             icon={openStates[0] ? faChevronUp : faChevronDown}
@@ -79,7 +79,7 @@ export const Account = ({ accounts = [] }: { accounts: Account[]; }) => {
       </div>
       <div className="mt-2" />
       <div className="bg-white rounded-md text-mini w-5/6 max-w-[450px]">
-        <div className="p-3 flex justify-between items-center text-mini">
+        <div className="py-3 px-5 flex justify-between items-center text-mini">
           <div>신부측에게</div>
           <FontAwesomeIcon 
             icon={openStates[1] ? faChevronUp : faChevronDown}

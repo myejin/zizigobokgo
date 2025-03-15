@@ -1,4 +1,6 @@
 import axios from "axios";
+import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { DynamoDBDocumentClient, GetCommand, type GetCommandOutput } from "@aws-sdk/lib-dynamodb";
 
 export const getTmapImage = async (longitude: number, latitude: number): Promise<string> => {
   try {
@@ -11,7 +13,7 @@ export const getTmapImage = async (longitude: number, latitude: number): Promise
         version: 1,
         zoom: 15,
         width: 800,
-        height: 400,
+        height: 270,
         format: 'png',
         longitude,
         latitude,
@@ -22,5 +24,28 @@ export const getTmapImage = async (longitude: number, latitude: number): Promise
     return URL.createObjectURL(res.data);
   } catch (error) {
     return "";
+  }
+}
+
+
+export const queryDynamoDocument = async (userKey: string): Promise<GetCommandOutput | null> => {
+  try {
+    const client = new DynamoDBClient({
+      region: import.meta.env.VITE_AWS_REGION,
+      credentials: {
+        accessKeyId: import.meta.env.VITE_AWS_ACCESS_KEY_ID,
+        secretAccessKey: import.meta.env.VITE_AWS_SECRET_ACCESS_KEY,
+      },
+    });
+    const docClient = DynamoDBDocumentClient.from(client);
+    const params = {
+      TableName: import.meta.env.VITE_DYNAMO_TABLE_NAME,
+      Key: {
+        user_key: userKey,
+      },
+    };
+    return docClient.send(new GetCommand(params));
+  } catch (error) {
+    return null;
   }
 }

@@ -22,6 +22,7 @@ export const Location = ({ name, address, tips = [] }: { name: string; address: 
   }, []);
 
   const openTmapApp = (address: string) => {
+    // TODO
     const tmapUrl = `tmap://search?name=${encodeURIComponent(address)}`;
     window.location.href = tmapUrl;
   };
@@ -47,23 +48,32 @@ export const Location = ({ name, address, tips = [] }: { name: string; address: 
         />
       </div>
       {mapImage && (
-        <div className="p-5">
+        <div 
+          className="py-5 relative" 
+          onClick={() => openTmapApp(address)}
+        >
+          <img 
+            src="./tmap_logo.webp" 
+            alt="tmap"
+            className="absolute m-2 w-5 h-5"
+          />
           <img 
             src={mapImage} 
             alt="Map" 
             className="w-full-or-max"
-            onClick={() => openTmapApp(address)}
           />
         </div>
       )}
       <div className="mb-5 flex items-center text-mini gap-x-2">
         <Button
-          text={"<> 카카오"}
+          icon={<img src="./kakaomap_logo.webp" alt="kakao" />}
+          text={"카카오맵"}
           className="w-30"
           onClick={() => window.open(`https://map.kakao.com/link/search/${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
         />
         <Button
-          text={"<> 네이버"}
+          icon={<img src="./navermap_logo.webp" alt="naver" />}
+          text={"네이버 지도"}
           className="w-30"
           onClick={() => window.open(`https://map.naver.com/p/search/${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
         />

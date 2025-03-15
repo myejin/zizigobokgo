@@ -23,11 +23,10 @@ const Button = ({ type = 'submit', text = "", icon, onClick, className = "" }: B
   return (
     <button
       onClick={onClick}
-      className={`m-1 p-2 rounded-md border border-neutral-300 hover:bg-neutral-200 ${className}`}
+      className={`m-1 p-2 flex justify-center rounded-md border border-neutral-300 hover:bg-neutral-200 ${className}`}
     >
-      {icon && icon}
-      {icon && text && <div className="pr-1" />}
-      {text}
+      {icon && <div className="w-5 h-5 mr-1">{icon}</div>}
+      <div>{text}</div>
     </button>
   );
 };
