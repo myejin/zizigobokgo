@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay} from "@fortawesome/free-solid-svg-icons";
 
@@ -24,8 +24,7 @@ export const Header = ({ title = "", bgmUrl = "" }: { title?: string; bgmUrl?: s
   return (
     <div className="relative flex justify-center">
       <div className="mt-15 mb-5 text-center">
-        <div>INVITATION</div>
-        <div>{title}</div>
+        {title.split("\n").map((line, idx) => (<div key={idx}>{line}</div>))}
       </div>
       {bgmUrl && (
         <div

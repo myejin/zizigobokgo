@@ -1,7 +1,7 @@
 import { Util } from "utils";
 
-export const Info = ({ title, locationName, date }: { title: string; locationName: string; date: Date; }) => {
-  if (!(title && locationName && date)) {
+export const Info = ({ locationName, date }: { locationName: string; date: Date; }) => {
+  if (!(locationName && date)) {
     return;
   }
   return (

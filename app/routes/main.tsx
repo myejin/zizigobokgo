@@ -11,14 +11,18 @@ import { Info } from "@/info";
 import { useEffect, useState, type JSX } from "react";
 import { Header } from "@/header";
 import { queryDynamoDocument } from "externals";
+import { useSearchParams } from "react-router";
 
 
 const Main = () => {
+  const [searchParams] = useSearchParams();
   const [item, setItem] = useState<any>(null);
   const [flowers, setFlowers] = useState<JSX.Element[]>([]);
   
   useEffect(() => {
     const fetchItem = async () => {
+      console.log('searchParams',searchParams)
+
       const document = await queryDynamoDocument("642w66qofDE3NDIwMTUxNTk4NjY=");
       if (document) {
         setItem(document.Item);
@@ -62,11 +66,13 @@ const Main = () => {
       />
       <MainPhoto photoUrl={item.mainPhotoUrl} />
       <Info 
-        title={item.title} 
         locationName={item.location.name} 
         date={new Date(item.date_iso)}
       />
-      <Invitation message={item.message} />
+      <Invitation 
+        message={item.message}
+        iframeTag={item.sub.find((sub: any) => sub.type === "iframe")?.iframeTag} // TODO: query param
+      />
       <Contact weddingHosts={item.weddingHosts} />
       <Day 
         brideName={item.brideName} 
@@ -84,7 +90,8 @@ const Main = () => {
       <Footer 
         title={item.title} 
         date={new Date(item.date_iso)}
-        imageUrl={item.mainPhotoUrl} 
+        imageUrl={item.mainPhotoUrl}
+        subTitle={item.sub.find((sub: any) => sub.title === "to. minjung")?.title} // TODO: query param
       />
     </>
   )

@@ -1,4 +1,8 @@
-export const Invitation = ({ message = "" }: { message?: string; }) => {
+export const Invitation = ({ message = "", iframeTag = "" }: { message?: string; iframeTag?: string; }) => {
+  const isValidIframeTag = (iframeTag: string) => {
+    return iframeTag.startsWith("<iframe") && iframeTag.includes('src="https://www.youtube.com/embed');
+  };
+  
   if (!message) {
     return;
   }
@@ -10,8 +14,15 @@ export const Invitation = ({ message = "" }: { message?: string; }) => {
           alt="invitation"
           className="w-8 pb-2 max-w-3xl h-auto"
         />
+        <div>INVITATION</div>
       </div>
-      {message.split("\n").map((text, idx) => {
+      {isValidIframeTag(iframeTag) && (
+        <div 
+          className="flex justify-center" 
+          dangerouslySetInnerHTML={{ __html: iframeTag }}
+        />
+      )}
+      {!isValidIframeTag(iframeTag) && message.split("\n").map((text, idx) => {
           if (!text) {
             return <br key={idx} />
           }

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { Util } from 'utils';
 
-export const Footer = ({ title = "", imageUrl = "", date }: { title: string; imageUrl?: string; date?: Date; }) => {
+export const Footer = ({ title, imageUrl, date, subTitle = "" }: { title: string; imageUrl: string; date: Date; subTitle?: string }) => {
   const [isClipboardCopied, setIsClipboardCopied] = useState(false);
   const isKakaoInitialized = () => {
     const { Kakao } = window as any;
@@ -53,10 +53,6 @@ export const Footer = ({ title = "", imageUrl = "", date }: { title: string; ima
     });
   }
 
-  if (!(title && date && imageUrl)) {
-    return;
-  }
-
   return (
     <div className="pt-15 flex flex-col items-center bg-neutral text-mini">
       
@@ -65,7 +61,7 @@ export const Footer = ({ title = "", imageUrl = "", date }: { title: string; ima
           className="flex cursor-pointer" 
           onClick={() => {
             if (isKakaoInitialized()) {
-              shareKakao(title, Util.getFormattedDate(date), imageUrl);
+              shareKakao(title, subTitle || Util.getFormattedDate(date), imageUrl);
             }
           }}
         >

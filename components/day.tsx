@@ -20,16 +20,16 @@ export const Day = ({ brideName, groomName, date }: { brideName: string; groomNa
         dDay={date.getDate()}
         className="border-y border-gray-200 my-5 text-mini"
       />
-      {brideName && groomName && (
+      {groomName && brideName && (
         <div className="pt-1 flex">
           {diffDay > 0 && (
             <>
-              <div className="px-1">{brideName} 🩶 {groomName} 결혼식이</div>
+              <div className="px-1">{groomName} 🩶 {brideName} 결혼식이</div>
               <div className="text-rosegray">{diffDay}</div>
               <div>일 남았습니다.</div>
             </>
           )}
-          {diffDay === 0 && <div>{brideName} 🩶 {groomName} 결혼식 당일입니다.</div>}
+          {diffDay === 0 && <div>{groomName} 🩶 {brideName} 결혼식 당일입니다.</div>}
         </div>
       )}
     </div>

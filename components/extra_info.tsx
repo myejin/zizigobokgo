@@ -4,7 +4,6 @@ export const ExtraInfo = ({ infos = [] }: { infos: { title?: string; message?: s
   if (infos.length === 0) {
     return;
   }
-  console.log(infos);
   return (
     <div className="pt-15 flex flex-col items-center bg-neutral">
       <div className="mb-7 text-default">사전 안내</div>
