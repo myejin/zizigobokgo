@@ -4,10 +4,16 @@ import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from "react";
 import { getTmapImage } from "externals";
 
-export const Location = ({ name, address, tips = [] }: { name: string; address: string; tips?: any[] }) => {
+interface LocationProps { 
+  name: string; 
+  address: string; 
+  tips?: { type: string; content: string; }[]
+}
+
+export const Location = ({ name, address, tips = [] }: LocationProps) => {
   const [mapImage, setMapImage] = useState<string>("");
   const [isClipboardCopied, setIsClipboardCopied] = useState(false);
-  
+
   if (!(name && address)) {
     return;
   }
@@ -53,7 +59,7 @@ export const Location = ({ name, address, tips = [] }: { name: string; address: 
           onClick={() => openTmapApp(address)}
         >
           <img 
-            src="./tmap_logo.webp" 
+            src="/tmap_logo.webp" 
             alt="tmap"
             className="absolute m-2 w-5 h-5"
           />
@@ -66,34 +72,32 @@ export const Location = ({ name, address, tips = [] }: { name: string; address: 
       )}
       <div className="mb-5 flex items-center text-mini gap-x-2">
         <Button
-          icon={<img src="./kakaomap_logo.webp" alt="kakao" />}
+          icon={<img src="/kakaomap_logo.webp" alt="kakao" />}
           text={"카카오맵"}
           className="w-30"
           onClick={() => window.open(`https://map.kakao.com/link/search/${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
         />
         <Button
-          icon={<img src="./navermap_logo.webp" alt="naver" />}
+          icon={<img src="/navermap_logo.webp" alt="naver" />}
           text={"네이버 지도"}
           className="w-30"
           onClick={() => window.open(`https://map.naver.com/p/search/${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
         />
       </div>
-      {tips.length === 0 && (
+      {tips.length > 0 && (
         <div className="w-3/4 max-w-[450px] my-3 text-mini">
-          <div className="text-rosegray pb-2">자차</div>
-          <div>네비게이션: '전쟁기념관 북문' 으로 검색</div>
-          <div className="border-b my-5 text-rosegray"></div>
-          <div className="text-rosegray pb-2">지하철</div>
-          <div>- 4호선: 삼각지역 1번 출구 (도보 5분)</div>
-          <div>- 6호선: 삼각지역 12번 출구 (도보 3분)</div>
-          <div className="border-b my-5 text-rosegray"></div>
-          <div className="text-rosegray pb-2">버스</div>
-          <div>- 전쟁기념관 하차</div>
-          <div>: 용산03, 110A, 421, 100, 150, 152, 500, 501, 502, 506, 507, 752</div>
-          <div className="border-b my-5 text-rosegray"></div>
-          <div className="text-rosegray pb-2">주차</div>
-          <div>전쟁기념관 내 주차장 이용 가능 (2시간 무료주차)</div>
-          <div>1층 로비 내 주차권 사전등록 필요</div>
+          {tips.map((tip, tipIdx) => (
+            <div key={tipIdx}>
+              <div className="text-rosegray pb-2">{tip.type}</div>
+              <div>
+                {tip.content.split("\n").map((line, idx) => (
+                  <div key={`line_${idx}`}>{line}</div>
+                ))
+                }
+              </div>
+              {tipIdx !== tips.length - 1 && (<div className="border-b my-5 text-rosegray" />)}
+            </div>
+          ))}
         </div>
       )}
     </div>

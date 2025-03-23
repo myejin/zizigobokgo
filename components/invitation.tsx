@@ -10,7 +10,7 @@ export const Invitation = ({ message = "", iframeTag = "" }: { message?: string;
     <div className="py-17 bg-neutral text-mini">
       <div className="pb-10 flex flex-col items-center">
         <img
-          src="./flower_icon.png"
+          src="/flower_icon.png"
           alt="invitation"
           className="w-8 pb-2 max-w-3xl h-auto"
         />

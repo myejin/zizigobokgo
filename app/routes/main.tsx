@@ -1,3 +1,4 @@
+import { useParams } from "react-router";
 import { Footer } from "@/footer";
 import { MainPhoto } from "@/main_photo";
 import { ExtraInfo } from "@/extra_info";
@@ -11,19 +12,16 @@ import { Info } from "@/info";
 import { useEffect, useState, type JSX } from "react";
 import { Header } from "@/header";
 import { queryDynamoDocument } from "externals";
-import { useSearchParams } from "react-router";
 
 
 const Main = () => {
-  const [searchParams] = useSearchParams();
+  const { invitationKey = "" } = useParams();
   const [item, setItem] = useState<any>(null);
   const [flowers, setFlowers] = useState<JSX.Element[]>([]);
   
   useEffect(() => {
     const fetchItem = async () => {
-      console.log('searchParams',searchParams)
-
-      const document = await queryDynamoDocument("642w66qofDE3NDIwMTUxNTk4NjY=");
+      const document = await queryDynamoDocument(invitationKey);
       if (document) {
         setItem(document.Item);
       }
