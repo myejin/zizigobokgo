@@ -27,12 +27,6 @@ export const Location = ({ name, address, tips = [] }: LocationProps) => {
     setTMap();
   }, []);
 
-  const openTmapApp = (address: string) => {
-    // TODO
-    const tmapUrl = `tmap://search?name=${encodeURIComponent(address)}`;
-    window.location.href = tmapUrl;
-  };
-
   const copyAddress = (address: string) => {
     setIsClipboardCopied(true)
     navigator.clipboard.writeText(address)
@@ -54,10 +48,7 @@ export const Location = ({ name, address, tips = [] }: LocationProps) => {
         />
       </div>
       {mapImage && (
-        <div 
-          className="py-5 relative" 
-          onClick={() => openTmapApp(address)}
-        >
+        <div className="py-5 relative">
           <img 
             src="/tmap_logo.webp" 
             alt="tmap"
@@ -70,7 +61,13 @@ export const Location = ({ name, address, tips = [] }: LocationProps) => {
           />
         </div>
       )}
-      <div className="mb-5 flex items-center text-mini gap-x-2">
+      <div className="mb-5 flex items-center text-mini">
+        <Button
+          icon={<img src="/tmap_logo.webp" alt="tmap" />}
+          text={"카카오맵"}
+          className="w-30"
+          onClick={() => window.open(`tmap://search?name=${encodeURIComponent(address)}`, '_blank', 'noopener,noreferrer')}
+        />
         <Button
           icon={<img src="/kakaomap_logo.webp" alt="kakao" />}
           text={"카카오맵"}

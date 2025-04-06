@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams, useSearchParams } from "react-router";
 import { Footer } from "@/footer";
 import { MainPhoto } from "@/main_photo";
 import { ExtraInfo } from "@/extra_info";
@@ -9,15 +9,16 @@ import { Location } from "@/location";
 import { Gallery } from "@/gallery";
 import { Account } from "@/account";
 import { Info } from "@/info";
-import { useEffect, useState, type JSX } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "@/header";
 import { queryDynamoDocument } from "externals";
 
 
 const Main = () => {
   const { invitationKey = "" } = useParams();
+  const [searchParams, _] = useSearchParams();
+  const subTitle = searchParams.get('subTitle');
   const [item, setItem] = useState<any>(null);
-  const [flowers, setFlowers] = useState<JSX.Element[]>([]);
   
   useEffect(() => {
     const fetchItem = async () => {
@@ -31,33 +32,11 @@ const Main = () => {
     }
   }, [item]);
 
-  useEffect(() => {
-    const interval = setInterval(() => setFlowers((prev) => {
-      if (prev.length > 20) {
-        clearInterval(interval);
-        return prev;
-      } else  {
-        const flower = (
-          <div
-            key={Math.random()}
-            className="flower"
-            style={{
-              left: `${Math.random() * 100}vw`,
-              animationDuration: `${Math.random() * 3 + 2}s`,
-            }}
-          />
-        );
-        return [...prev, flower];
-      }
-    }), 2000);
-  }, []);
-
   if (!item) {
     return <div className="m-3">loading...</div>;
   }
   return (
     <>
-      {flowers}
       <Header 
         title={item.title} 
         bgmUrl={item.bgmUrl}
@@ -69,7 +48,7 @@ const Main = () => {
       />
       <Invitation 
         message={item.message}
-        iframeTag={item.sub.find((sub: any) => sub.type === "iframe")?.iframeTag} // TODO: query param
+        videoUrl={item.sub.find((sub: any) => sub.type === "video" && sub.title === subTitle)?.video}
       />
       <Contact weddingHosts={item.weddingHosts} />
       <Day 
@@ -89,7 +68,7 @@ const Main = () => {
         title={item.title} 
         date={new Date(item.date_iso)}
         imageUrl={item.mainPhotoUrl}
-        subTitle={item.sub.find((sub: any) => sub.title === "to. minjung")?.title} // TODO: query param
+        subTitle={subTitle ?? ""}
       />
     </>
   )

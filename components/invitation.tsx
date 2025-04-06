@@ -1,13 +1,9 @@
-export const Invitation = ({ message = "", iframeTag = "" }: { message?: string; iframeTag?: string; }) => {
-  const isValidIframeTag = (iframeTag: string) => {
-    return iframeTag.startsWith("<iframe") && iframeTag.includes('src="https://www.youtube.com/embed');
-  };
-  
+export const Invitation = ({ message = "", videoUrl = "" }: { message?: string; videoUrl?: string; }) => {
   if (!message) {
     return;
   }
   return (
-    <div className="py-17 bg-neutral text-mini">
+    <div className="py-17 flex flex-col items-center bg-neutral text-mini">
       <div className="pb-10 flex flex-col items-center">
         <img
           src="/flower_icon.png"
@@ -16,13 +12,14 @@ export const Invitation = ({ message = "", iframeTag = "" }: { message?: string;
         />
         <div>INVITATION</div>
       </div>
-      {isValidIframeTag(iframeTag) && (
-        <div 
-          className="flex justify-center" 
-          dangerouslySetInnerHTML={{ __html: iframeTag }}
-        />
+      {videoUrl && (
+        <div className="mx-5">
+          <video controls>
+            <source src={videoUrl} type="video/mp4" />
+          </video>
+        </div>
       )}
-      {!isValidIframeTag(iframeTag) && message.split("\n").map((text, idx) => {
+      {!videoUrl && message.split("\n").map((text, idx) => {
           if (!text) {
             return <br key={idx} />
           }

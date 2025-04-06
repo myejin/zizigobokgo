@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import Button from "./common/button";
 
 const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () => void }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -20,23 +23,23 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
           X
         </button>
         <div className="relative">
-          <button 
-            onClick={goPrev} 
+          <Button 
+            type="icon"
             className="absolute top-1/2 left-5"
-          >
-            &lt;
-          </button>
+            icon={<FontAwesomeIcon icon={faChevronLeft} className="text-white" />}
+            onClick={goPrev}
+          />
           <img 
             src={photoUrls[currentIndex]} 
             alt={`photo_${currentIndex}`} 
             className="w-full-or-max" 
           />
-          <button 
-            onClick={goNext} 
+          <Button 
+            type="icon"
             className="absolute top-1/2 right-5"
-          >
-            &gt;
-          </button>
+            icon={<FontAwesomeIcon icon={faChevronRight} className="text-white" />}
+            onClick={goNext}
+          />
         </div>
       </div>
     </div>
