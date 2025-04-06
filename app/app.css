@@ -31,16 +31,6 @@ body {
   }
 }
 
-.flower {
-  position: fixed;
-  top: -100px;
-  width: 15px;
-  height: 15px;
-  background-image: url('./mini_flower.png');
-  background-size: cover;
-  animation: fall linear infinite;
-  z-index: 100;
-}
 .collapse-content {
   max-height: 0;
   overflow: hidden;
