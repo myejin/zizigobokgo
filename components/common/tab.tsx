@@ -1,4 +1,4 @@
-import React, { useState, type JSX } from 'react';
+import { useState, type JSX } from 'react';
 
 interface TabItemProps {
     name: string;
