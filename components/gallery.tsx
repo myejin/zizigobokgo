@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import Button from "./common/button";
 
 const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () => void }) => {
@@ -16,12 +16,12 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
   return (
     <div className="fixed inset-0 flex items-center max-w-[450px] mx-auto z-1000">
       <div className="flex flex-col text-gray-700">
-        <button 
-          onClick={onClose} 
+        <Button 
+          type="icon"
           className="flex justify-end mx-3 my-2" 
-        >
-          X
-        </button>
+          icon={<FontAwesomeIcon icon={faTimes} />}
+          onClick={onClose}
+        />
         <div className="relative">
           <Button 
             type="icon"
