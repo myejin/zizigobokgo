@@ -59,23 +59,15 @@ export const Location = ({ name, address, tips = [] }: LocationProps) => {
       )}
       <div className="mb-5 flex items-center text-mini">
         <Button
-          icon={<img src="/tmap_logo.webp" alt="tmap" />}
-          text={"티맵"}
-          className="w-28"
-          onClick={() => {
-            window.location.href = `tmap://route?goalAddress=${encodeURIComponent(address)}`;
-          }}
-        />
-        <Button
           icon={<img src="/kakaomap_logo.webp" alt="kakao" />}
           text={"카카오맵"}
-          className="w-28"
+          className="w-30"
           onClick={() => window.open(`https://map.kakao.com/link/search/${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
         />
         <Button
           icon={<img src="/navermap_logo.webp" alt="naver" />}
           text={"네이버지도"}
-          className="w-28"
+          className="w-30"
           onClick={() => window.open(`https://map.naver.com/p/search/${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
         />
       </div>
