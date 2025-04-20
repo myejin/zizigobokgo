@@ -32,7 +32,6 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
           <img 
             src={photoUrls[currentIndex]} 
             alt={`photo_${currentIndex}`} 
-            className="w-full-or-max" 
           />
           <Button 
             type="icon"

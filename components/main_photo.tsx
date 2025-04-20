@@ -10,12 +10,10 @@ export const MainPhoto = ({ photoUrl = "" }: MainPhotoProps) => {
     return;
   }
   return (
-    <div className="flex justify-center">
-      <img
-        src={photoUrl}
-        alt="main_photo"
-        className="w-full-or-max"
-      />
-    </div>
+    <img
+      src={photoUrl}
+      alt="main_photo"
+      className="w-full-or-max"
+    />
   );
 }

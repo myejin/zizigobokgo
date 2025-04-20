@@ -54,11 +54,7 @@ export const Location = ({ name, address, tips = [] }: LocationProps) => {
             alt="tmap"
             className="absolute m-2 w-5 h-5"
           />
-          <img 
-            src={mapImage} 
-            alt="Map" 
-            className="w-full-or-max"
-          />
+          <img src={mapImage} alt="Map" />
         </div>
       )}
       <div className="mb-5 flex items-center text-mini">

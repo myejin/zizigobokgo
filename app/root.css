@@ -13,7 +13,7 @@
 
 html,
 body {
-  @apply flex flex-col justify-center text-black;
+  @apply flex flex-col items-center justify-center text-black;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
