@@ -14,34 +14,38 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
   };
 
   return (
-    <div className="fixed inset-0 flex items-center max-w-[450px] mx-auto z-1000">
-      <div className="flex flex-col text-gray-700">
+    <>
+      <div className="fixed inset-0 z-999 bg-blurred-black">
         <Button 
           type="icon"
-          className="flex justify-end mx-3 my-2" 
-          icon={<FontAwesomeIcon icon={faTimes} />}
+          className="absolute top-5 right-5" 
+          icon={<FontAwesomeIcon icon={faTimes} className="text-white" />}
           onClick={onClose}
         />
-        <div className="relative">
-          <Button 
-            type="icon"
-            className="absolute top-1/2 left-5"
-            icon={<FontAwesomeIcon icon={faChevronLeft} className="text-white" />}
-            onClick={goPrev}
-          />
-          <img 
-            src={photoUrls[currentIndex]} 
-            alt={`photo_${currentIndex}`} 
-          />
-          <Button 
-            type="icon"
-            className="absolute top-1/2 right-5"
-            icon={<FontAwesomeIcon icon={faChevronRight} className="text-white" />}
-            onClick={goNext}
-          />
+      </div>
+      <div className="fixed inset-0 flex items-center w-full-or-max mx-auto z-1000">
+        <div className="flex flex-col text-gray-700">
+          <div className="relative">
+            <Button 
+              type="icon"
+              className="absolute top-1/2 left-5"
+              icon={<FontAwesomeIcon icon={faChevronLeft} className="text-white" />}
+              onClick={goPrev}
+            />
+            <img 
+              src={photoUrls[currentIndex]} 
+              alt={`photo_${currentIndex}`}
+            />
+            <Button 
+              type="icon"
+              className="absolute top-1/2 right-5"
+              icon={<FontAwesomeIcon icon={faChevronRight} className="text-white" />}
+              onClick={goNext}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

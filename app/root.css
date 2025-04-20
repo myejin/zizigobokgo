@@ -45,6 +45,10 @@ body {
 .bg-neutral-light {
   @apply bg-neutral-50;
 }
+.bg-blurred-black {
+  @apply bg-black;
+  @apply opacity-80;
+}
 .text-rosegray {
   @apply text-[#E9A5A5];
 }
