@@ -11,7 +11,7 @@ export class Util {
             .replace("pm", "오후")
             .replace(/_(\d+)/g, (match) => {
                 const dayLabel = ['일', '월', '화', '수', '목', '금', '토'];
-                return `${dayLabel[Number(match.replace("_", ""))]}요일`;
+                return `(${dayLabel[Number(match.replace("_", ""))]})`;
             });
     }
 }
