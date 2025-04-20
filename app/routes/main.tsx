@@ -56,12 +56,12 @@ const Main = () => {
         groomName={item.groomName} 
         date={new Date(item.date_iso)}
       />
+      <Gallery photoUrls={item.photoUrls} />
       <Location 
         name={item.location.name} 
         address={item.location.address} 
         tips={item.location.tips}
       />
-      <Gallery photoUrls={item.photoUrls} />
       <ExtraInfo infos={item.extraInfos} />
       <Account accounts={item.accounts} />
       <Footer 
