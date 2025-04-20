@@ -15,16 +15,14 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
 
   return (
     <>
-      <div className="fixed inset-0 z-[999] bg-blurred-black">
+      <div className="fixed inset-0 z-[999] bg-blurred-black" />
+      <div className="fixed inset-0 flex items-center w-full-or-max mx-auto z-[1000]">
         <Button 
           type="icon"
-          className="absolute top-5 right-5 p-5 z-[2000]" 
+          className="absolute top-2 right-0 p-5" 
           icon={<FontAwesomeIcon icon={faTimes} className="text-white" />}
-          // onClick={onClose}
-          onClick={() => alert('clicked!')} 
+          onClick={onClose}
         />
-      </div>
-      <div className="fixed inset-0 flex items-center w-full-or-max mx-auto z-[1000]">
         <div className="flex flex-col text-gray-700">
           <div className="relative">
             <Button 
