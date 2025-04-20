@@ -3,7 +3,7 @@ export const Invitation = ({ message = "", videoUrl = "" }: { message?: string; 
     return;
   }
   return (
-    <div className="py-17 flex flex-col items-center bg-neutral text-mini">
+    <div className="pt-15 pb-5 flex flex-col items-center bg-neutral text-mini">
       <div className="pb-10 flex flex-col items-center">
         <img
           src="/flower_icon.png"

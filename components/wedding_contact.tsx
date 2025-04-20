@@ -60,12 +60,12 @@ const ContactItem = (hosts: WeddingHost[], type: WeddingHostType.LEFT | WeddingH
   )
 }
 
-export const Contact = ({ weddingHosts = [] }: { weddingHosts?: WeddingHost[] }) => {
+export const WeddingContact = ({ weddingHosts = [] }: { weddingHosts?: WeddingHost[] }) => {
   if (weddingHosts.length === 0) {
     return;
   }
   return (
-    <div className="pb-10 flex flex-col items-center bg-neutral text-mini">
+    <div className="py-10 flex flex-col items-center bg-neutral text-mini">
       <div className="text-default py-1">연락하기</div>
       <Tabs
         items={[

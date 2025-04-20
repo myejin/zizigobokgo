@@ -1,8 +1,8 @@
 const NotFound = () => {
   return (
-    <div className="m-3 flex flex-col items-center">
-      <div>Hello, This is an invalid page.</div>
-      <div>Happy Wedding Day!</div>
+    <div className="m-10 flex flex-col items-center">
+      <div>잘못된 페이지로 접근하였습니다.</div>
+      <div>This is an invalid page.</div>
     </div>
   )
 }

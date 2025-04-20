@@ -3,7 +3,7 @@ import { Footer } from "@/footer";
 import { MainPhoto } from "@/main_photo";
 import { ExtraInfo } from "@/extra_info";
 import { Invitation } from "@/invitation";
-import { Contact } from "@/contact";
+import { WeddingContact } from "@/wedding_contact";
 import { Day } from "@/day";
 import { Location } from "@/location";
 import { Gallery } from "@/gallery";
@@ -14,7 +14,7 @@ import { Header } from "@/header";
 import { queryDynamoDocument } from "externals";
 
 
-const Main = () => {
+const WeddingInvitation = () => {
   const { invitationKey = "" } = useParams();
   const [searchParams, _] = useSearchParams();
   const subTitle = searchParams.get('subTitle');
@@ -38,6 +38,7 @@ const Main = () => {
   return (
     <>
       <Header 
+        headTitle={"We're married"}
         title={item.title} 
         bgmUrl={item.bgmUrl}
       />
@@ -50,7 +51,7 @@ const Main = () => {
         message={item.message}
         videoUrl={item.sub.find((sub: any) => sub.type === "video" && sub.title === subTitle)?.video}
       />
-      <Contact weddingHosts={item.weddingHosts} />
+      <WeddingContact weddingHosts={item.weddingHosts} />
       <Day 
         brideName={item.brideName} 
         groomName={item.groomName} 
@@ -74,4 +75,4 @@ const Main = () => {
   )
 }
 
-export default Main;
+export default WeddingInvitation;
