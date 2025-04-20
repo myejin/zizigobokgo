@@ -15,7 +15,7 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
 
   return (
     <>
-      <div className="fixed inset-0 z-[999] bg-blurred-black">
+      <div className="fixed inset-0 z-[999] bg-blurred-black pointer-events-auto">
         <Button 
           type="icon"
           className="absolute top-5 right-5 p-5" 
