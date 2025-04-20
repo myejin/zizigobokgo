@@ -19,7 +19,7 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
       <div className="fixed inset-0 flex items-center w-full-or-max mx-auto z-[1000]">
         <Button 
           type="icon"
-          className="absolute top-2 right-0 p-5" 
+          className="absolute top-2 right-5 p-5" 
           icon={<FontAwesomeIcon icon={faTimes} className="text-white" />}
           onClick={onClose}
         />
