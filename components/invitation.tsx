@@ -13,7 +13,7 @@ export const Invitation = ({ message = "", videoUrl = "" }: { message?: string; 
         <div>INVITATION</div>
       </div>
       {videoUrl && (
-        <div className="mx-5">
+        <div className="mx-5 w-full-or-max">
           <video controls>
             <source src={videoUrl} type="video/mp4" />
           </video>
