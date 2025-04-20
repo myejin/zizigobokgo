@@ -1,9 +1,10 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
 
 
 export const Header = ({ title = "", bgmUrl = "" }: { title?: string; bgmUrl?: string; }) => {
+  const [isManuallyPaused, setIsManuallyPaused] = useState(false);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -11,12 +12,23 @@ export const Header = ({ title = "", bgmUrl = "" }: { title?: string; bgmUrl?: s
     if (audioRef.current) {
       if (isAudioPlaying) {
         audioRef.current.pause();
+        setIsManuallyPaused(true);
       } else {
         audioRef.current.play();
       }
       setIsAudioPlaying(!isAudioPlaying);
     }
   };
+
+  useEffect(() => {
+    if (isManuallyPaused) {
+      return;
+    }
+    if (audioRef.current) {
+      audioRef.current.play();
+      setIsAudioPlaying(true);
+    }
+  }, [isManuallyPaused]);
 
   if (!title) {
     return;
