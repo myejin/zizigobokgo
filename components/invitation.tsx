@@ -17,8 +17,9 @@ export const Invitation = ({ message = "", videoUrl = "" }: { message?: string; 
           <video 
             controls 
             preload="metadata" 
-            poster={`${videoUrl}#t=0.5`}
+            poster={`${videoUrl}#t=0.1`}
             className="w-full-or-max h-auto"
+            muted
           >
             <source src={videoUrl} type="video/mp4" />
           </video>
