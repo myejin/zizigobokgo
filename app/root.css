@@ -13,7 +13,7 @@
 
 html,
 body {
-  @apply flex flex-col justify-center;
+  @apply flex flex-col justify-center text-black;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
@@ -51,9 +51,6 @@ body {
 .text-mini-gray {
   @apply text-sm lg:text-base;
   @apply text-gray-500;
-}
-.text-title {
-  @apply text-2xl md:text-3xl lg:text-4xl;
 }
 .text-default {
   @apply text-base md:text-lg lg:text-xl;
