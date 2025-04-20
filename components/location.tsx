@@ -62,8 +62,9 @@ export const Location = ({ name, address, tips = [] }: LocationProps) => {
           icon={<img src="/tmap_logo.webp" alt="tmap" />}
           text={"티맵"}
           className="w-28"
-          // TODO: Add Tmap link
-          onClick={() => window.open(`tmap://search?name=${encodeURIComponent(address)}`, '_blank', 'noopener,noreferrer')}
+          onClick={() => {
+            window.location.href = `tmap://route?goalAddress=${encodeURIComponent(address)}`;
+          }}
         />
         <Button
           icon={<img src="/kakaomap_logo.webp" alt="kakao" />}

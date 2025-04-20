@@ -64,7 +64,7 @@ export const Account = ({ accounts = [] }: { accounts: Account[]; }) => {
         <div>전해주시는 진심은 소중하게 간직하여</div>
         <div>좋은 부부의 모습으로 보답하겠습니다.</div>
       </div>
-      <div className="bg-white rounded-md text-mini w-5/6 max-w-[450px]">
+      <div className="bg-white rounded-md text-mini w-4/5">
         <div className="py-3 px-5 flex justify-between items-center text-mini">
           <div>신랑측에게</div>
           <FontAwesomeIcon 
@@ -78,7 +78,7 @@ export const Account = ({ accounts = [] }: { accounts: Account[]; }) => {
         </div>
       </div>
       <div className="mt-2" />
-      <div className="bg-white rounded-md text-mini w-5/6 max-w-[450px]">
+      <div className="bg-white rounded-md text-mini w-4/5">
         <div className="py-3 px-5 flex justify-between items-center text-mini">
           <div>신부측에게</div>
           <FontAwesomeIcon 
