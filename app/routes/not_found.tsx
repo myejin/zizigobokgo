@@ -1,7 +1,7 @@
 const NotFound = () => {
   return (
-    <div className="m-3">
-      <div>Hello, This is an invalid page</div>
+    <div className="m-3 flex flex-col items-center">
+      <div>Hello, This is an invalid page.</div>
       <div>Happy Wedding Day!</div>
     </div>
   )
