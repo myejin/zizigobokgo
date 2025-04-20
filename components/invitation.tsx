@@ -14,7 +14,7 @@ export const Invitation = ({ message = "", videoUrl = "" }: { message?: string; 
       </div>
       {videoUrl && (
         <div className="mx-5 w-full-or-max">
-          <video controls>
+          <video controls preload="metadata">
             <source src={videoUrl} type="video/mp4" />
           </video>
         </div>
