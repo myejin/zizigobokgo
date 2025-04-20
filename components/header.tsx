@@ -21,14 +21,14 @@ export const Header = ({ title = "", bgmUrl = "" }: { title?: string; bgmUrl?: s
   };
 
   useEffect(() => {
-    if (isManuallyPaused) {
+    if (isManuallyPaused || isAudioPlaying) {
       return;
     }
     if (audioRef.current) {
       audioRef.current.play();
       setIsAudioPlaying(true);
     }
-  }, [isManuallyPaused]);
+  }, [isManuallyPaused, isAudioPlaying]);
 
   if (!title) {
     return;
