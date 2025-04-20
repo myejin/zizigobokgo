@@ -61,7 +61,7 @@ export const Footer = ({ title, imageUrl, date, subTitle = "" }: { title: string
           className="flex cursor-pointer" 
           onClick={() => {
             if (isKakaoInitialized()) {
-              shareKakao(title, subTitle || Util.getFormattedDate(date), imageUrl);
+              shareKakao(title.replaceAll('\n', ' '), subTitle || Util.getFormattedDate(date), imageUrl);
             }
           }}
         >
