@@ -1,8 +1,8 @@
-import Button from "./common/button";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getTmapImage } from "externals";
+import { useEffect, useState } from "react";
+import Button from "./common/button";
 
 interface LocationProps { 
   name: string; 
@@ -61,13 +61,13 @@ export const Location = ({ name, address, tips = [] }: LocationProps) => {
         <Button
           icon={<img src="/kakaomap_logo.webp" alt="kakao" />}
           text={"카카오맵"}
-          className="w-30"
+          className="m-1 w-30"
           onClick={() => window.open(`https://map.kakao.com/link/search/${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
         />
         <Button
           icon={<img src="/navermap_logo.webp" alt="naver" />}
           text={"네이버지도"}
-          className="w-30"
+          className="m-1 w-30"
           onClick={() => window.open(`https://map.naver.com/p/search/${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
         />
       </div>

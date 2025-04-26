@@ -1,16 +1,13 @@
-import { useParams, useSearchParams } from "react-router";
-import { Footer } from "@/footer";
-import { MainPhoto } from "@/main_photo";
-import { ExtraInfo } from "@/extra_info";
-import { Day } from "@/day";
-import { Location } from "@/location";
-import { Gallery } from "@/gallery";
 import { Account } from "@/account";
-import { Info } from "@/info";
-import { useEffect, useState } from "react";
-import { Header } from "@/header";
-import { queryDynamoDocument } from "externals";
+import { ExtraInfo } from "@/extra_info";
+import { Footer } from "@/footer";
 import { FuneralContact } from "@/funeral_contact";
+import { Header } from "@/header";
+import { Info } from "@/info";
+import { MainPhoto } from "@/main_photo";
+import { queryDynamoDocument } from "externals";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 
 const Funeral = () => {
@@ -31,7 +28,7 @@ const Funeral = () => {
 
   if (!item) {
     console.log("hello...");
-    return <div className="m-3">loading...</div>;
+    return <div className="my-3">loading...</div>;
   }
   return (
     <>

@@ -1,44 +1,24 @@
-import { useParams, useSearchParams } from "react-router";
-import { Footer } from "@/footer";
-import { MainPhoto } from "@/main_photo";
-import { ExtraInfo } from "@/extra_info";
-import { Invitation } from "@/invitation";
-import { WeddingContact } from "@/wedding_contact";
-import { Day } from "@/day";
-import { Location } from "@/location";
-import { Gallery } from "@/gallery";
 import { Account } from "@/account";
-import { Info } from "@/info";
-import { useEffect, useState } from "react";
+import { Day } from "@/day";
+import { ExtraInfo } from "@/extra_info";
+import { Footer } from "@/footer";
+import { Gallery } from "@/gallery";
 import { Header } from "@/header";
-import { queryDynamoDocument } from "externals";
+import { Info } from "@/info";
+import { Invitation } from "@/invitation";
+import { Location } from "@/location";
+import { MainPhoto } from "@/main_photo";
+import { WeddingContact } from "@/wedding_contact";
 
 
-const WeddingInvitation = () => {
-  const { invitationKey = "" } = useParams();
-  const [searchParams, _] = useSearchParams();
-  const subTitle = searchParams.get('subTitle');
-  const [item, setItem] = useState<any>(null);
-  
-  useEffect(() => {
-    const fetchItem = async () => {
-      const document = await queryDynamoDocument(invitationKey);
-      if (document) {
-        setItem(document.Item);
-      }
-    };
-    if (!item) {
-      fetchItem();
-    }
-  }, [item]);
-
+const WeddingInvitation = ({ item, subTitle }: { item: any; subTitle: any }) => {
   if (!item) {
-    return <div className="m-3">loading...</div>;
+    return <div className="my-3">loading...</div>;
   }
+  
   return (
     <>
       <Header 
-        headTitle={"We're married"}
         title={item.title} 
         bgmUrl={item.bgmUrl}
       />
