@@ -43,7 +43,7 @@ const ContactItem = (hosts: WeddingHost[], type: WeddingHostType.LEFT | WeddingH
       {nameAndDescriptions.map(({ name, description }, idx) => (
         <div className="my-1 flex justify-between" key={idx}>
           <div className="flex">
-            <div className="w-27">{description}</div>
+            <div className="w-20">{description}</div>
             <div className="w-17">{name}</div>
           </div>
           <div className="flex gap-x-1">

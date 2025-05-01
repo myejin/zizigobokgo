@@ -67,7 +67,7 @@ export const Gallery = ({ photoUrls = [] }: { photoUrls?: string[] }) => {
   return (
     <div className="my-15 flex flex-col items-center">
       <div className="text-default">웨딩 갤러리</div>
-      <div className="my-5 max-w-lg grid grid-cols-3">
+      <div className="mx-1 my-5 max-w-lg grid grid-cols-3">
         {photoUrls.slice(0, preViewLength).map((url, idx) => (
           <div key={idx} className="w-full aspect-square bg-gray-50">
             <img src={url} alt={`photo_${idx}`} className="w-full h-full object-cover" />
