@@ -1,3 +1,5 @@
+import { faPause, faPlay } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
 
 
@@ -40,7 +42,7 @@ export const Header = ({
         <div className="mt-15 mb-5 text-center">
           {title.split("\n").map((line, idx) => (<div key={idx}>{line}</div>))}
         </div>
-        {/* {bgmUrl && (
+        {bgmUrl && (
           <div
             className="absolute right-3 top-2 text-mini-gray cursor-pointer" 
             onClick={toggleAudioPlayer}
@@ -48,7 +50,7 @@ export const Header = ({
             <FontAwesomeIcon icon={isAudioPlaying ? faPause : faPlay} />
             <audio ref={audioRef} src={bgmUrl} loop />
           </div>
-        )} */}
+        )}
       </div>
     </>
   );

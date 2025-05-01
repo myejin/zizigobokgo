@@ -50,7 +50,7 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
 
 
 export const Gallery = ({ photoUrls = [] }: { photoUrls?: string[] }) => {
-  const preViewLength = 8;
+  const preViewLength = 9;
   const [viewModal, setModalAll] = useState(false);
 
   useEffect(() => {
@@ -65,22 +65,20 @@ export const Gallery = ({ photoUrls = [] }: { photoUrls?: string[] }) => {
     return;
   }
   return (
-    <div className="py-15 flex flex-col items-center">
-      <div className="mb-5 text-default">웨딩 갤러리</div>
-      <div className="grid grid-cols-3">
+    <div className="my-15 flex flex-col items-center">
+      <div className="text-default">웨딩 갤러리</div>
+      <div className="my-5 max-w-lg grid grid-cols-3">
         {photoUrls.slice(0, preViewLength).map((url, idx) => (
           <div key={idx} className="w-full aspect-square bg-gray-50">
             <img src={url} alt={`photo_${idx}`} className="w-full h-full object-cover" />
           </div>
         ))}
-        <button
-          onClick={() => setModalAll(true)}
-          className="w-full aspect-square text-mini"
-        >
-          + more
-        </button>
       </div>
-
+      <Button
+        className="w-full text-mini"
+        text={`더보기`}
+        onClick={() => setModalAll(true)}
+      />
       {viewModal && <PhotoModal photoUrls={photoUrls} onClose={() => setModalAll(false)} />}
     </div>
   );

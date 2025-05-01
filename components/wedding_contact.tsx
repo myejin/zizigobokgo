@@ -16,29 +16,37 @@ enum WeddingHostType {
 interface WeddingHost {
   type: WeddingHostType | string;
   name: string;
+  description: string;
   phone: string;
 }
 
 const ContactItem = (hosts: WeddingHost[], type: WeddingHostType.LEFT | WeddingHostType.RIGHT): JSX.Element => {
-  const findNamesByType = (hosts: WeddingHost[], type: string) => {
-    return hosts.find((host) => host.type === type)?.name ?? ''
+  const findNameAndDescriptionByType = (hosts: WeddingHost[], type: string) => {
+    const host = hosts.find((host) => host.type === type);
+
+    return {
+      name: host?.name ?? '',
+      description: host?.description ?? '',
+    }
   }
   const findPhoneByName = (hosts: WeddingHost[], name: string) => {
     return hosts.find((host) => host.name === name)?.phone ?? ''
   }
-  const names = [
-    findNamesByType(hosts, type),
-    findNamesByType(hosts, `${type}_left`),
-    findNamesByType(hosts, `${type}_right`),
+  const nameAndDescriptions = [
+    findNameAndDescriptionByType(hosts, type),
+    findNameAndDescriptionByType(hosts, `${type}_left`),
+    findNameAndDescriptionByType(hosts, `${type}_right`),
   ]
 
   return (
-    <div className="px-7 py-4 bg-neutral-light rounded-md shadow-sm">
-      {names.map((name, idx) => (
+    <div className="px-5 py-4 bg-neutral-light rounded-md shadow-sm">
+      {nameAndDescriptions.map(({ name, description }, idx) => (
         <div className="my-1 flex justify-between" key={idx}>
-          <div className="w-30">{name}</div>
+          <div className="flex">
+            <div className="w-27">{description}</div>
+            <div className="w-17">{name}</div>
+          </div>
           <div className="flex gap-x-1">
-            <div className="text-gray-400">•••</div>
             <Button 
               type="icon"
               icon={<FontAwesomeIcon icon={faPhone} className="text-mini-gray" />}
