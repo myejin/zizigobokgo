@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { faChevronLeft, faChevronRight, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
 import Button from "./common/button";
 
 const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () => void }) => {
@@ -19,13 +19,13 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
       <div className="fixed inset-0 flex items-center w-full-or-max mx-auto z-[1000]">
         <Button 
           type="icon"
-          className="absolute top-2 right-5 p-5" 
+          className="absolute top-5 right-5 p-5" 
           icon={<FontAwesomeIcon icon={faTimes} className="text-white" />}
           onClick={onClose}
         />
         <div className="flex flex-col text-gray-700">
           <div className="relative">
-            <Button 
+            <Button
               type="icon"
               className="absolute top-1/2 left-5"
               icon={<FontAwesomeIcon icon={faChevronLeft} className="text-white" />}
@@ -67,16 +67,15 @@ export const Gallery = ({ photoUrls = [] }: { photoUrls?: string[] }) => {
   return (
     <div className="py-15 flex flex-col items-center">
       <div className="mb-5 text-default">웨딩 갤러리</div>
-      
-      <div className="grid grid-cols-3 gap-1">
+      <div className="grid grid-cols-3">
         {photoUrls.slice(0, preViewLength).map((url, idx) => (
-          <div key={idx} className="w-25 h-25 bg-gray-50">
+          <div key={idx} className="w-full aspect-square bg-gray-50">
             <img src={url} alt={`photo_${idx}`} className="w-full h-full object-cover" />
           </div>
         ))}
         <button
           onClick={() => setModalAll(true)}
-          className="w-25 h-25 text-mini"
+          className="w-full aspect-square text-mini"
         >
           + more
         </button>

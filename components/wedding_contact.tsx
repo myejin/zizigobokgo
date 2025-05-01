@@ -1,8 +1,8 @@
 import Button from "@/common/button";
-import Tabs from "./common/tab";
-import type { JSX } from "react";
+import { faMessage, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone, faMessage } from "@fortawesome/free-solid-svg-icons";
+import type { JSX } from "react";
+import Tabs from "./common/tab";
 
 enum WeddingHostType {
   RIGHT = 'right',
@@ -33,10 +33,10 @@ const ContactItem = (hosts: WeddingHost[], type: WeddingHostType.LEFT | WeddingH
   ]
 
   return (
-    <div className="px-6 py-4 bg-neutral-light rounded-md shadow-sm">
+    <div className="px-7 py-4 bg-neutral-light rounded-md shadow-sm">
       {names.map((name, idx) => (
         <div className="my-1 flex justify-between" key={idx}>
-          <div className="w-35">{name}</div>
+          <div className="w-30">{name}</div>
           <div className="flex gap-x-1">
             <div className="text-gray-400">•••</div>
             <Button 
