@@ -48,7 +48,16 @@ export const Header = ({
             onClick={toggleAudioPlayer}
           >
             <FontAwesomeIcon icon={isAudioPlaying ? faPause : faPlay} />
-            <audio ref={audioRef} src={bgmUrl} loop />
+            <audio 
+              ref={audioRef} 
+              src={bgmUrl} 
+              loop 
+              onLoadedMetadata={() => {
+                if (audioRef.current) {
+                  audioRef.current.volume = 0.3;
+                }
+              }}
+            />
           </div>
         )}
       </div>
