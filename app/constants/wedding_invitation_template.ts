@@ -1,6 +1,9 @@
 export const weddingInvitationTemplate = {
     "location": {
         "name": "창경궁 아나까나홀",
+        "latitude": "37.5792",
+        "longitude": "127.0003",
+        "tmapUrl": "https://tmap.life/47875143",
         "tips": [
             {
                 "type": "주차",

@@ -5,20 +5,8 @@ import { weddingInvitationTemplate } from '~/constants/wedding_invitation_templa
 
 const CreateWeddingInvitation = () => {
     const [formData, setFormData] = useState(weddingInvitationTemplate);
-
-    const [extraInfoData, setExtraInfoData] = useState([
-        {
-            "message": "신부대기실은 4층에 위치하고 있으며\n연회장은 3층에 위치하고 있습니다.\n\n여유있게 도착하셔서\n신부와 함께 예쁜 추억을 남겨주세요 :)",
-            "title": "신부대기실 및 연회장"
-        }
-    ]);
-
-    const [locationTipData, setLocationTipData] = useState([
-        {
-            "type": "주차",
-            "content": "운동장 내 주차장 이용 가능 (2시간 무료주차)\n1층 로비 내 주차권 사전등록 필요"
-        }
-    ]);
+    const [extraInfoData, setExtraInfoData] = useState(weddingInvitationTemplate.extraInfos);
+    const [locationTipData, setLocationTipData] = useState(weddingInvitationTemplate.location.tips);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -46,8 +34,8 @@ const CreateWeddingInvitation = () => {
                 <form>
                     <div className="flex justify-between my-15">
                         <div className="text-tiny-gray">
-                            <div>작성 완료 후 카카오톡 채널로 문의주시면</div>
-                            <div>갤러리 및 배경음악 등록 도와드리겠습니다.</div>
+                            <div>작성 완료 후 아이디를 기록하고</div>
+                            <div>갤러리 및 배경음악 등록 등 완성할 수 있습니다.</div>
                         </div>
                         <Button onClick={onSave} text={"저장하기"} />
                     </div>
@@ -56,7 +44,7 @@ const CreateWeddingInvitation = () => {
                             <div className="py-1 text-default">신랑</div>
                             <textarea
                                 className="w-full h-13 p-3 border border-gray-400 rounded"
-                                name="title"
+                                name="groomName"
                                 value={formData.groomName}
                                 onChange={handleChange}
                             />
@@ -65,7 +53,7 @@ const CreateWeddingInvitation = () => {
                             <div className="py-1 text-default">신부</div>
                             <textarea
                                 className="w-full h-13 p-3 border border-gray-400 rounded"
-                                name="title"
+                                name="brideName"
                                 value={formData.brideName}
                                 onChange={handleChange}
                             />
@@ -83,18 +71,27 @@ const CreateWeddingInvitation = () => {
                         />
                     </div>
                     <div className="my-5">
-                        <div className="py-1 text-default">대표 이미지</div>
-                        ...
-                        {/* mainPhotoUrl */}
-                        {/* <textarea
-                            className="w-full p-3 border border-gray-400 rounded"
-                            name="title"
-                            value={formData.title}
-                            onChange={handleChange}
-                        /> */}
-                    </div>
-                    <div className="my-5">
                         <div className="py-1 text-default">오시는 길</div>
+                        <div className="flex gap-3">
+                            <div className="w-1/2">
+                                <div className="py-1">위도(lat)</div>
+                                <textarea
+                                    className="w-full h-13 p-3 border border-gray-400 rounded"
+                                    name="title"
+                                    value={formData.location.latitude}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="w-1/2">
+                                <div className="py-1">경도(lng)</div>
+                                <textarea
+                                    className="w-full h-13 p-3 border border-gray-400 rounded"
+                                    name="title"
+                                    value={formData.location.longitude}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                        </div>
                         <div>
                             <div className="py-1">주소</div>
                             <textarea
@@ -177,20 +174,6 @@ const CreateWeddingInvitation = () => {
                                 />
                             </>
                         ))}
-                        <Button
-                            className="w-full"
-                            text={"추가하기"}
-                            onClick={() => {
-                                setExtraInfoData((prev) => {
-                                    const newData = [...prev];
-                                    newData.push({
-                                        title: "",
-                                        message: ""
-                                    });
-                                    return newData;
-                                })
-                            }}
-                        />
                     </div>
                     <div className="my-5">
                         <div className="py-1 text-default">사전 안내</div>
@@ -234,20 +217,6 @@ const CreateWeddingInvitation = () => {
                                 />
                             </>
                         ))}
-                        <Button
-                            className="w-full"
-                            text={"추가하기"}
-                            onClick={() => {
-                                setExtraInfoData((prev) => {
-                                    const newData = [...prev];
-                                    newData.push({
-                                        title: "",
-                                        message: ""
-                                    });
-                                    return newData;
-                                })
-                            }}
-                        />
                     </div>
                     <div className="my-5">
                         <div className="py-1 text-default">마음 전하실 곳</div>

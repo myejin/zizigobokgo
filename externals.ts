@@ -2,7 +2,7 @@ import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient, GetCommand, type GetCommandOutput } from "@aws-sdk/lib-dynamodb";
 import axios from "axios";
 
-export const getTmapImage = async (longitude: number, latitude: number): Promise<string> => {
+export const getTmapImage = async (longitude: string, latitude: string): Promise<string> => {
   try {
     const res = await axios.get(`https://apis.openapi.sk.com/tmap/staticMap`, {
       headers: {

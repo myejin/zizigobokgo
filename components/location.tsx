@@ -5,12 +5,22 @@ import { useEffect, useState } from "react";
 import Button from "./common/button";
 
 interface LocationProps { 
-  name: string; 
-  address: string; 
+  name: string;
+  address: string;
+  latitude?: string;
+  longitude?: string;
+  tmapUrl?: string;
   tips?: { type: string; content: string; }[]
 }
 
-export const Location = ({ name, address, tips = [] }: LocationProps) => {
+export const Location = ({ location: { 
+  name, 
+  address, 
+  longitude,
+  latitude,
+  tmapUrl, 
+  tips = [] 
+}}: { location: LocationProps }) => {
   const [mapImage, setMapImage] = useState<string>("");
   const [isClipboardCopied, setIsClipboardCopied] = useState(false);
 
@@ -19,8 +29,10 @@ export const Location = ({ name, address, tips = [] }: LocationProps) => {
   }
 
   const setTMap = async () => {
-    const image = await getTmapImage(126.9768, 37.5665);
-    setMapImage(image);
+    if (longitude && latitude) {
+      const image = await getTmapImage(longitude, latitude);
+      setMapImage(image);
+    }
   };
   
   useEffect(() => {
@@ -48,28 +60,23 @@ export const Location = ({ name, address, tips = [] }: LocationProps) => {
         />
       </div>
       {mapImage && (
-        <div className="py-5 relative">
-          <img 
-            src="/tmap_logo.webp" 
-            alt="tmap"
-            className="absolute m-2 w-5 h-5"
-          />
-          <img src={mapImage} alt="Map" />
-        </div>
+        <img className="py-5" src={mapImage} alt="Map" />
       )}
       <div className="mt-1 mb-5 flex items-center text-mini gap-1">
-        {/* <Button
-          icon={<img src="/tmap_logo.webp" alt="tmap" />}
-          text={"티맵"}
-          className="w-27"
-          onClick={() => window.open(`https://poi.tmobiweb.com/app/share/position?contents=${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
-        /> */}
         <Button
           icon={<img src="/kakaomap_logo.webp" alt="kakao" />}
           text={"카카오맵"}
-          className="w-28"
-          onClick={() => window.open(`https://map.kakao.com/link/search/${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
+          className="w-27"
+          onClick={() => window.open(`https://map.kakao.com?q=${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
         />
+        {tmapUrl && (
+          <Button
+            icon={<img src="/tmap_logo.webp" alt="tmap" />}
+            text={"티맵"}
+            className="w-26"
+            onClick={() => window.open(tmapUrl, '_blank', 'noopener,noreferrer')}
+          />
+        )}
         <Button
           icon={<img src="/navermap_logo.webp" alt="naver" />}
           text={"네이버지도"}

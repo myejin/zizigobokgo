@@ -38,10 +38,8 @@ const WeddingInvitation = ({ item, subTitle }: { item: any; subTitle: any }) => 
         date={new Date(item.date_iso)}
       />
       <Gallery photoUrls={item.photoUrls} />
-      <Location 
-        name={item.location.name} 
-        address={item.location.address} 
-        tips={item.location.tips}
+      <Location
+        location={item.location}
       />
       <ExtraInfo infos={item.extraInfos} />
       <Account accounts={item.accounts} />
