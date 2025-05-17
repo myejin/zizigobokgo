@@ -9,6 +9,7 @@ import { Invitation } from "@/invitation";
 import { Location } from "@/location";
 import { MainPhoto } from "@/main_photo";
 import { WeddingContact } from "@/wedding_contact";
+import { Bgm } from "./bgm";
 
 
 const WeddingInvitation = ({ item, subTitle }: { item: any; subTitle: any }) => {
@@ -18,9 +19,11 @@ const WeddingInvitation = ({ item, subTitle }: { item: any; subTitle: any }) => 
   
   return (
     <>
+      <Bgm 
+        bgmUrl={item.bgmUrl}
+      />
       <Header 
         title={item.title} 
-        bgmUrl={item.bgmUrl}
       />
       <MainPhoto photoUrl={item.mainPhotoUrl} />
       <Info 
