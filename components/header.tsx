@@ -3,7 +3,7 @@
 export const Header = ({ 
   title = "", 
 }: { title?: string; }) => {
-  if (title) {
+  if (!title) {
     return;
   }
   return (
