@@ -76,20 +76,24 @@ export const Location = ({ location: {
       {mapImage && (
         <img className="py-5" src={mapImage} alt="Map" />
       )}
-      <div className="mt-1 mb-5 flex items-center text-mini gap-1">
+      <div className="mt-1 mb-5 flex items-center bg-white rounded-md text-mini">
         <Button
           icon={<img src="/kakaomap_logo.webp" alt="kakao" />}
           text={"카카오맵"}
-          className="w-27"
+          className="w-28"
           onClick={() => window.open(`https://map.kakao.com?q=${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
         />
+        <div className="h-5 border-r border-neutral-300" />
         {tmapUrl && (
-          <Button
-            icon={<img src="/tmap_logo.webp" alt="tmap" />}
-            text={"티맵"}
-            className="w-26"
-            onClick={() => window.open(tmapUrl, '_blank', 'noopener,noreferrer')}
-          />
+          <>
+            <Button
+              icon={<img src="/tmap_logo.webp" alt="tmap" />}
+              text={"티맵"}
+              className="w-23"
+              onClick={() => window.open(tmapUrl, '_blank', 'noopener,noreferrer')}
+            />
+            <div className="h-5 border-r border-neutral-300" />
+          </>
         )}
         <Button
           icon={<img src="/navermap_logo.webp" alt="naver" />}
