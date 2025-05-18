@@ -65,7 +65,7 @@ const ViewFuneral = ({ demoType = "" }: { demoType?: string; }) => {
       <Footer 
         title={"부고 소식 전달드립니다."} 
         date={new Date(item.date_iso)}
-        imageUrl={item.mainPhotoUrl}
+        imageUrl={'/black_ribbon.png'}
       />
     </>
   )
