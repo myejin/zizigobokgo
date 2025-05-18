@@ -10,14 +10,14 @@ interface FrameImageProps {
 const FrameImage: React.FC<FrameImageProps> = ({
   profileUrl,
   imageUrl,
-  content,
+  content = '저희 예쁘게 잘 살겠습니다!\n지켜봐주세요 😊',
 }) => {
   if (!imageUrl || !profileUrl) {
     return null;
   }
   return (
-    <div className="bg-neutral flex justify-center pt-10 text-white">
-      <div className="w-75 rounded-lg bg-black">
+    <div className="bg-neutral flex justify-center pt-10">
+      <div className="w-75 rounded-lg bg-white shadow-lg">
         <div className="flex items-center p-3">
           <img src={profileUrl} alt="profile" className="w-7 h-7 rounded-full mr-2" />
           <span className="text-mini">예신예랑</span>
@@ -29,7 +29,9 @@ const FrameImage: React.FC<FrameImageProps> = ({
           <Send className="w-5 h-5" />
         </div>
         <div className="px-3 pt-3 pb-5 flex flex-col text-mini">
-          <div>{content ?? '저희 예쁘게 잘 살겠습니다 😊'}</div>
+          {content.split("\n").map((line, idx) => (
+            <div key={`content_${idx}`}>{line}</div>
+          ))}
         </div>
       </div>
     </div>

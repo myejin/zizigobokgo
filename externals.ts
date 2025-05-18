@@ -4,7 +4,6 @@ import axios from "axios";
 
 export const getTmapImage = async (longitude: string, latitude: string): Promise<string> => {
   try {
-    return "";
     const res = await axios.get(`https://apis.openapi.sk.com/tmap/staticMap`, {
       headers: {
         'Accept': 'application/json',
