@@ -1,6 +1,6 @@
-import { useState, type JSX } from "react";
+import { faChevronDown, faChevronUp, faCopy } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronUp, faChevronDown, faCopy } from '@fortawesome/free-solid-svg-icons';
+import { useState, type JSX } from "react";
 
 
 interface Account {
@@ -59,7 +59,7 @@ export const Account = ({ accounts = [] }: { accounts: Account[]; }) => {
       <div className="py-7 flex flex-col items-center text-tiny-gray">
         <div>직접 오시기 어려운 분들을 위해</div>
         <div>계좌번호를 기재하였습니다.</div>
-        <div>전해주시는 진심은 소중하게 간직하겠습니다.</div>
+        <div>전해주시는 진심을 소중히 간직하겠습니다.</div>
       </div>
       <div className="bg-white rounded-md text-mini w-4/5">
         <div className="py-3 px-5 flex justify-between items-center text-mini">

@@ -1,16 +1,41 @@
 import { faChevronLeft, faChevronRight, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "./common/button";
 
 const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () => void }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartX = useRef<number>(null);
+  const touchEndX = useRef<number>(null);
 
   const goPrev = () => {
     setCurrentIndex((idx) => (idx === 0 ? photoUrls.length - 1 : idx - 1));
   };
   const goNext = () => {
     setCurrentIndex((idx) => (idx === photoUrls.length - 1 ? 0 : idx + 1));
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current && touchEndX.current) {
+      const distance = touchStartX.current - touchEndX.current;
+
+      if (distance > 50) {
+        goPrev();
+      } else if (distance < -50) {
+        goNext();
+      }
+  
+      touchStartX.current = null;
+      touchEndX.current = null;
+    }
   };
 
   return (
@@ -23,7 +48,12 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
           icon={<FontAwesomeIcon icon={faTimes} className="text-white" />}
           onClick={onClose}
         />
-        <div className="flex flex-col text-gray-700">
+        <div 
+          className="flex flex-col text-gray-700"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           <div className="relative">
             <Button
               type="icon"
@@ -75,7 +105,7 @@ export const Gallery = ({ photoUrls = [] }: { photoUrls?: string[] }) => {
         ))}
       </div>
       <Button
-        className="w-85 text-mini"
+        className="w-85 bg-rosegray text-mini"
         text={`더보기`}
         onClick={() => setModalAll(true)}
       />

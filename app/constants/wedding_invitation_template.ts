@@ -89,5 +89,9 @@ export const weddingInvitationTemplate = {
             "video": "https://pub-e87c21ce420d4449a2b3327bf0c92512.r2.dev/642w66qofDE3NDIwMTUxNTk4NjY=/video.mp4"
         }
     ],
-    "title": "Sangho & Hyejin\n저희 결혼합니다"
+    "title": "Sangho & Hyejin\n저희 결혼합니다",
+    "frameImage": {
+        "imageUrl": "https://pub-e87c21ce420d4449a2b3327bf0c92512.r2.dev/642w66qofDE3NDIwMTUxNTk4NjY=/0.jpeg",
+        "content": "저희 예쁘게 잘 살겠습니다 😊"
+    }
 }

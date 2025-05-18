@@ -1,4 +1,4 @@
-import { faCopy } from '@fortawesome/free-solid-svg-icons';
+import { faCopy, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getTmapImage } from "externals";
 import { useEffect, useState } from "react";
@@ -6,6 +6,7 @@ import Button from "./common/button";
 
 interface LocationProps { 
   name: string;
+  phone?: string;
   address: string;
   latitude?: string;
   longitude?: string;
@@ -15,6 +16,7 @@ interface LocationProps {
 
 export const Location = ({ location: { 
   name, 
+  phone,
   address, 
   longitude,
   latitude,
@@ -51,7 +53,19 @@ export const Location = ({ location: {
     <div className="py-10 flex flex-col items-center bg-neutral">
       <div className="mb-7 text-default">오시는 길</div>
       <div className="text-default pb-1">{name}</div>
-      <div className="flex justify-between">
+      {phone && (
+        <div className="flex justify-between items-center">
+          <div className="text-mini-gray">문의처: {phone}</div>
+          <FontAwesomeIcon 
+            icon={faPhone}
+            className={`px-2 cursor-pointer text-mini-gray`}
+            onClick={() => {
+              window.location.href = `tel:${phone}`;
+            }}
+          />
+        </div>
+      )}
+      <div className="flex justify-between items-center">
         <div className="text-mini-gray">{address}</div>
         <FontAwesomeIcon 
           icon={faCopy}

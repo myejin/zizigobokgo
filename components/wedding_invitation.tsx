@@ -10,6 +10,7 @@ import { Location } from "@/location";
 import { MainPhoto } from "@/main_photo";
 import { WeddingContact } from "@/wedding_contact";
 import { Bgm } from "./bgm";
+import FrameImage from "./frame_image";
 
 
 const WeddingInvitation = ({ item, subTitle }: { item: any; subTitle: any }) => {
@@ -46,6 +47,11 @@ const WeddingInvitation = ({ item, subTitle }: { item: any; subTitle: any }) => 
       />
       <ExtraInfo infos={item.extraInfos} />
       <Account accounts={item.accounts} />
+      <FrameImage 
+        profileUrl={item.mainPhotoUrl}
+        imageUrl={item.frameImage.imageUrl}
+        content={item.frameImage.content} 
+      />
       <Footer 
         title={item.title} 
         date={new Date(item.date_iso)}

@@ -42,7 +42,7 @@ const ContactItem = (hosts: WeddingHost[], type: WeddingHostType.LEFT | WeddingH
     <div className="px-5 py-4 bg-neutral-light rounded-md shadow-sm">
       {nameAndDescriptions.map(({ name, description }, idx) => (
         <div className="my-1 flex justify-between" key={idx}>
-          <div className="flex">
+          <div className="flex gap-x-2">
             <div className="w-20">{description}</div>
             <div className="w-17">{name}</div>
           </div>
