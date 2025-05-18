@@ -27,9 +27,9 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
     if (touchStartX.current && touchEndX.current) {
       const distance = touchStartX.current - touchEndX.current;
 
-      if (distance > 50) {
+      if (distance > 30) {
         goPrev();
-      } else if (distance < -50) {
+      } else if (distance < -30) {
         goNext();
       }
   
@@ -44,7 +44,7 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
       <div className="fixed inset-0 flex items-center w-full-or-max mx-auto z-[1000]">
         <Button 
           type="icon"
-          className="absolute top-5 right-5 p-5" 
+          className="absolute top-5 right-5 p-5 z-[1001]" 
           icon={<FontAwesomeIcon icon={faTimes} className="text-white" />}
           onClick={onClose}
         />
