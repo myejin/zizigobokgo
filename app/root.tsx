@@ -16,6 +16,8 @@ if (rootElement) {
       <BrowserRouter>
         <Routes>
           <Route path="/funerals/:funeralKey" element={<Funeral />} />
+          <Route path="/wedding-demo0" element={<ViewWeddingInvitation demoType="0" />} />
+          <Route path="/wedding-demo1" element={<ViewWeddingInvitation demoType="1" />} />
           <Route path="/wedding-invitations/create" element={<CreateWeddingInvitation />} />
           <Route path="/wedding-invitations/:invitationKey" element={<ViewWeddingInvitation />} />
           <Route path="*" element={<NotFound />} />
