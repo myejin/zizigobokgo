@@ -1,6 +1,6 @@
 import { Util } from "utils";
 
-export const Info = ({ locationName, date }: { locationName: string; date: Date; }) => {
+export const WeddingInfo = ({ locationName, date }: { locationName: string; date: Date; }) => {
   if (!(locationName && date)) {
     return;
   }

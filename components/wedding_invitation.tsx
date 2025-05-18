@@ -1,16 +1,16 @@
-import { Account } from "@/account";
 import { Day } from "@/day";
 import { ExtraInfo } from "@/extra_info";
 import { Footer } from "@/footer";
 import { Gallery } from "@/gallery";
 import { Header } from "@/header";
-import { Info } from "@/info";
 import { Invitation } from "@/invitation";
 import { Location } from "@/location";
 import { MainPhoto } from "@/main_photo";
 import { WeddingContact } from "@/wedding_contact";
+import { WeddingInfo } from "@/wedding_info";
 import { Bgm } from "./bgm";
 import FrameImage from "./frame_image";
+import { WeddingAccount } from "./wedding_account";
 
 
 const WeddingInvitation = ({ item, subTitle }: { item: any; subTitle: any }) => {
@@ -27,7 +27,7 @@ const WeddingInvitation = ({ item, subTitle }: { item: any; subTitle: any }) => 
         title={item.title} 
       />
       <MainPhoto photoUrl={item.mainPhotoUrl} />
-      <Info 
+      <WeddingInfo 
         locationName={item.location.name} 
         date={new Date(item.date_iso)}
       />
@@ -46,7 +46,7 @@ const WeddingInvitation = ({ item, subTitle }: { item: any; subTitle: any }) => 
         location={item.location}
       />
       <ExtraInfo infos={item.extraInfos} />
-      <Account accounts={item.accounts} />
+      <WeddingAccount accounts={item.accounts} />
       <FrameImage 
         profileUrl={item.mainPhotoUrl}
         imageUrl={item.frameImage.imageUrl}

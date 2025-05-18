@@ -1,49 +1,18 @@
-import { faChevronDown, faChevronUp, faCopy } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useState, type JSX } from "react";
+import { useState } from "react";
+import { AccountItem, type AccountItemProps } from './common/account_item';
 
 
-interface Account {
-  type: string; // 'right' | 'left';
+interface WeddingAccountProps extends AccountItemProps {
+  type: 'right' | 'left';
   name: string;
   description: string;
   bank: string;
   number: string;
 }
 
-const AccountItem = ({ account }: { account: Account }): JSX.Element => {
-  const [isClipboardCopied, setIsClipboardCopied] = useState(false);
-
-  const copyAccountNumber = (accountNumber: string) => {
-    setIsClipboardCopied(true)
-    navigator.clipboard.writeText(accountNumber)
-    setTimeout(() => {
-      setIsClipboardCopied(false)
-    }, 200);
-  };
-
-  return (
-    <div className="my-3 px-5 py-4 bg-white rounded-md">
-      <div className="px-1 pb-3 flex justify-between">
-        <div>{account.description}</div>
-        <div>{account.name}</div>
-      </div>
-      <div className="p-3 flex justify-between bg-gray-100 rounded-md">
-        <div>
-          <div className="text-gray-500 text-[85%]">{account.bank}</div>
-          <div>{account.number}</div>
-        </div>
-        <FontAwesomeIcon 
-          icon={faCopy}
-          className={`flex justify-end cursor-pointer ${isClipboardCopied ? "text-gray-900" : "text-gray-400"}`}
-          onClick={() => copyAccountNumber(account.number.replaceAll('-', ''))}
-        />
-      </div>
-    </div>
-  )
-}
-
-export const Account = ({ accounts = [] }: { accounts: Account[]; }) => {
+export const WeddingAccount = ({ accounts = [] }: { accounts: WeddingAccountProps[]; }) => {
   const [openStates, setOpenStates] = useState([false, false]);
   
   if (accounts.length === 0) {

@@ -69,7 +69,7 @@ export const weddingInvitationTemplate = {
         }
     ],
     "message": "예쁜 예감이 들었다.\n우리는 언제나 손을 잡고 있게 될 것이다.\n-연인,이이체-\n\n두 손 꼭 잡고 하나 되는 날\n함께 축복해주시면 큰 기쁨으로 간직하겠습니다.\n\n남상호, 김혜진 드림",
-    "user_key": "642w66qofDE3NDIwMTUxNTk4NjY=",
+    "user_key": "x_user_key_x",
     "photoUrls": [
         "https://pub-e87c21ce420d4449a2b3327bf0c92512.r2.dev/642w66qofDE3NDIwMTUxNTk4NjY=/0.jpeg",
         "https://pub-e87c21ce420d4449a2b3327bf0c92512.r2.dev/642w66qofDE3NDIwMTUxNTk4NjY=/1.jpeg",
