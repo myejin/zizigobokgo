@@ -12,7 +12,7 @@ export const weddingInvitationTemplateEn = {
             },
             {
                 "type": "Subway",
-                "content": "Nearest Exit 2 of Seoul Station."
+                "content": "5-minute walk from Exit 2 of Seoul Station."
             }
         ],
         "longitude": "126.9768"
@@ -28,7 +28,7 @@ export const weddingInvitationTemplateEn = {
             "title": "Bride’s Lounge and Banquet Hall"
         }
     ],
-    "message": "A beautiful premonition has come to me.\nWe shall always walk hand in hand.\n— With love, Iiche —\n\nOn the day we become one,\nwe would be deeply honored to receive your heartfelt blessings.\n\nSincerely,\nSangho Nam & Hyejin Kim",
+    "message": "A beautiful premonition has come to me.\nWe shall always walk hand in hand.\n— With love, Iiche —\n\nOn the day we become one,\nWe would be honored to receive your blessings.\n\nSincerely,\nSangho Nam & Hyejin Kim",
     "user_key": "x_user_key_x",
     "photoUrls": [
         "https://pub-e87c21ce420d4449a2b3327bf0c92512.r2.dev/642w66qofDE3NDIwMTUxNTk4NjY=/0.jpeg",

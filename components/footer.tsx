@@ -45,7 +45,7 @@ export const Footer = ({ title, imageUrl, date, subTitle = "", isEn }: { title: 
         },
         buttons: [
           {
-            title: '초대장 보기',
+            title: isEn ? "View Invitation" : "초대장 보기",
             link,
           },
         ],
@@ -61,7 +61,7 @@ export const Footer = ({ title, imageUrl, date, subTitle = "", isEn }: { title: 
           className="flex cursor-pointer" 
           onClick={() => {
             if (isKakaoInitialized()) {
-              shareKakao(title.replaceAll('\n', ' '), subTitle || Util.getFormattedDate(date), imageUrl);
+              shareKakao(title.replaceAll('\n', ' '), subTitle || Util.getFormattedDate(date, isEn ? "en" : "ko"), imageUrl);
             }
           }}
         >
