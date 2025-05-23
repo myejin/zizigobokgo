@@ -15,7 +15,6 @@ const ViewWeddingInvitation = ({ demoType}: { demoType?: string }) => {
     const fetchItem = async () => {
       const document = await queryDynamoDocument(invitationKey);
       if (document) {
-        console.log(JSON.stringify(document.Item))
         setItem(document.Item);
       }
     };
