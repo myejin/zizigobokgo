@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState } from 'react';
 import { Util } from 'utils';
 
-export const Footer = ({ title, imageUrl, date, subTitle = "" }: { title: string; imageUrl: string; date: Date; subTitle?: string }) => {
+export const Footer = ({ title, imageUrl, date, subTitle = "", isEn }: { title: string; imageUrl: string; date: Date; subTitle?: string; isEn: boolean; }) => {
   const [isClipboardCopied, setIsClipboardCopied] = useState(false);
   const isKakaoInitialized = () => {
     const { Kakao } = window as any;
@@ -69,14 +69,14 @@ export const Footer = ({ title, imageUrl, date, subTitle = "" }: { title: string
             icon={faLink}
             className="pt-1 px-1"
           />
-          <div>카카오 공유하기</div> 
+          <div>{isEn ? "Send Kakao" : "카카오 공유하기"}</div> 
         </button>
         <button className="flex cursor-pointer" onClick={copyUrlToClipboard}>
           <FontAwesomeIcon 
             icon={faLink}
             className={`pt-1 px-1 ${isClipboardCopied && "text-gray-500"}`}
           />
-          <div>링크 복사하기</div>
+          <div>{isEn ? "Copy Link" : "링크 복사하기"}</div>
         </button>
       </div>
       <footer className="mt-30 mb-1 text-center text-[8px] text-gray-400">

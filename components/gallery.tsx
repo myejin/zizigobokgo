@@ -79,7 +79,7 @@ const PhotoModal = ({ photoUrls, onClose }: { photoUrls: string[], onClose: () =
 };
 
 
-export const Gallery = ({ photoUrls = [] }: { photoUrls?: string[] }) => {
+export const Gallery = ({ photoUrls = [], isEn }: { photoUrls?: string[]; isEn: boolean; }) => {
   const preViewLength = 9;
   const [viewModal, setModalAll] = useState(false);
 
@@ -96,7 +96,7 @@ export const Gallery = ({ photoUrls = [] }: { photoUrls?: string[] }) => {
   }
   return (
     <div className="my-15 flex flex-col items-center">
-      <div className="text-default">웨딩 갤러리</div>
+      <div className="text-default">{isEn ? "Gallery" : "웨딩 갤러리"}</div>
       <div className="my-5 w-85 max-w-lg grid grid-cols-3 gap-1">
         {photoUrls.slice(0, preViewLength).map((url, idx) => (
           <div key={idx} className="w-full aspect-square bg-gray-50">
@@ -106,7 +106,7 @@ export const Gallery = ({ photoUrls = [] }: { photoUrls?: string[] }) => {
       </div>
       <Button
         className="w-85 bg-rosegray text-mini"
-        text={`더보기`}
+        text={isEn ? "More" : "더보기"}
         onClick={() => setModalAll(true)}
       />
       {viewModal && <PhotoModal photoUrls={photoUrls} onClose={() => setModalAll(false)} />}

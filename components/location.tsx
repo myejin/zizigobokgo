@@ -14,7 +14,7 @@ interface LocationProps {
   tips?: { type: string; content: string; }[]
 }
 
-export const Location = ({ location: { 
+export const Location = ({ isEn, location: { 
   name, 
   phone,
   address, 
@@ -22,7 +22,7 @@ export const Location = ({ location: {
   latitude,
   tmapUrl, 
   tips = [] 
-}}: { location: LocationProps }) => {
+}}: { isEn: boolean; location: LocationProps }) => {
   const [mapImage, setMapImage] = useState<string>("");
   const [isClipboardCopied, setIsClipboardCopied] = useState(false);
 
@@ -51,7 +51,7 @@ export const Location = ({ location: {
 
   return (
     <div className="py-10 flex flex-col items-center bg-neutral">
-      <div className="mb-7 text-default">오시는 길</div>
+      <div className="mb-7 text-default">{isEn ? "Location" : "오시는 길"}</div>
       <div className="text-default pb-1">{name}</div>
       {phone && (
         <div className="flex justify-between items-center">
@@ -73,35 +73,42 @@ export const Location = ({ location: {
           onClick={() => copyAddress(address)}
         />
       </div>
-      {mapImage && (
-        <img className="py-5" src={mapImage} alt="Map" />
-      )}
-      <div className="mt-1 mb-5 flex items-center bg-white rounded-md text-mini">
-        <Button
-          icon={<img src="/kakaomap_logo.webp" alt="kakao" />}
-          text={"카카오맵"}
-          className="w-28"
-          onClick={() => window.open(`https://map.kakao.com?q=${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
-        />
-        <div className="h-5 border-r border-neutral-300" />
-        {tmapUrl && (
-          <>
+      {isEn ? (
+        // google map
+        <></>
+      ) : (
+        <>
+          {mapImage && (
+            <img className="py-5" src={mapImage} alt="Map" />
+          )}
+          <div className="mt-1 mb-5 flex items-center bg-white rounded-md text-mini">
             <Button
-              icon={<img src="/tmap_logo.webp" alt="tmap" />}
-              text={"티맵"}
-              className="w-23"
-              onClick={() => window.open(tmapUrl, '_blank', 'noopener,noreferrer')}
+              icon={<img src="/kakaomap_logo.webp" alt="kakao" />}
+              text={"카카오맵"}
+              className="w-28"
+              onClick={() => window.open(`https://map.kakao.com?q=${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
             />
             <div className="h-5 border-r border-neutral-300" />
-          </>
-        )}
-        <Button
-          icon={<img src="/navermap_logo.webp" alt="naver" />}
-          text={"네이버지도"}
-          className="w-28"
-          onClick={() => window.open(`https://map.naver.com/p/search/${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
-        />
-      </div>
+            {tmapUrl && (
+              <>
+                <Button
+                  icon={<img src="/tmap_logo.webp" alt="tmap" />}
+                  text={"티맵"}
+                  className="w-23"
+                  onClick={() => window.open(tmapUrl, '_blank', 'noopener,noreferrer')}
+                />
+                <div className="h-5 border-r border-neutral-300" />
+              </>
+            )}
+            <Button
+              icon={<img src="/navermap_logo.webp" alt="naver" />}
+              text={"네이버지도"}
+              className="w-28"
+              onClick={() => window.open(`https://map.naver.com/p/search/${encodeURI(address)}`, '_blank', 'noopener,noreferrer')}
+            />
+          </div>
+        </>
+      )}
       {tips.length > 0 && (
         <div className="w-3/4 max-w-[450px] my-3 text-mini">
           {tips.map((tip, tipIdx) => (

@@ -68,17 +68,17 @@ const ContactItem = (hosts: WeddingHost[], type: WeddingHostType.LEFT | WeddingH
   )
 }
 
-export const WeddingContact = ({ weddingHosts = [] }: { weddingHosts?: WeddingHost[] }) => {
+export const WeddingContact = ({ weddingHosts = [], isEn }: { weddingHosts?: WeddingHost[]; isEn: boolean }) => {
   if (weddingHosts.length === 0) {
     return;
   }
   return (
     <div className="py-10 flex flex-col items-center bg-neutral text-mini">
-      <div className="text-default py-1">연락하기</div>
+      <div className="text-default py-1">{isEn ? "Contact" : "연락하기"}</div>
       <Tabs
         items={[
-          { name: '신랑에게', elem: ContactItem(weddingHosts, WeddingHostType.LEFT) },
-          { name: '신부에게', elem: ContactItem(weddingHosts, WeddingHostType.RIGHT) },
+          { name: isEn ? "Groom" : "신랑에게", elem: ContactItem(weddingHosts, WeddingHostType.LEFT) },
+          { name: isEn ? "Bride" : "신부에게", elem: ContactItem(weddingHosts, WeddingHostType.RIGHT) },
         ]} 
       />
     </div>

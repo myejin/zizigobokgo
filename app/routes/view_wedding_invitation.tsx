@@ -3,9 +3,10 @@ import { queryDynamoDocument } from "externals";
 import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router";
 import { weddingInvitationTemplate } from "~/constants/wedding_invitation_template";
+import { weddingInvitationTemplateEn } from "~/constants/wedding_invitation_template_en";
 
 
-const ViewWeddingInvitation = ({ demoType}: { demoType?: string }) => {
+const ViewWeddingInvitation = ({ demoType, isEn = false }: { demoType?: string; isEn?: boolean }) => {
   const { invitationKey = "" } = useParams();
   const [searchParams, _] = useSearchParams();
   const subTitle = searchParams.get('subTitle');
@@ -20,7 +21,11 @@ const ViewWeddingInvitation = ({ demoType}: { demoType?: string }) => {
     };
     if (!item) {
       if (demoType) {
-        setItem(weddingInvitationTemplate);
+        if (isEn) {
+          setItem(weddingInvitationTemplateEn);
+        } else {
+          setItem(weddingInvitationTemplate);
+        }
       } else {
         fetchItem();
       }
@@ -31,6 +36,7 @@ const ViewWeddingInvitation = ({ demoType}: { demoType?: string }) => {
     <WeddingInvitation 
       item={item} 
       subTitle={demoType === "0" ? weddingInvitationTemplate.sub[0].title : subTitle}
+      isEn={isEn}
     /> 
   )
 }

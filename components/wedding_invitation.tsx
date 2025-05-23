@@ -13,7 +13,7 @@ import FrameImage from "./frame_image";
 import { WeddingAccount } from "./wedding_account";
 
 
-const WeddingInvitation = ({ item, subTitle }: { item: any; subTitle: any }) => {
+const WeddingInvitation = ({ item, subTitle, isEn = false }: { item: any; subTitle: any; isEn?: boolean; }) => {
   if (!item) {
     return <div className="my-3">loading...</div>;
   }
@@ -30,33 +30,40 @@ const WeddingInvitation = ({ item, subTitle }: { item: any; subTitle: any }) => 
       <WeddingInfo 
         locationName={item.location.name} 
         date={new Date(item.date_iso)}
+        isEn={isEn}
       />
       <Invitation 
         message={item.message}
         videoUrl={item.sub.find((sub: any) => sub.type === "video" && sub.title === subTitle)?.video}
       />
-      <WeddingContact weddingHosts={item.weddingHosts} />
+      <WeddingContact weddingHosts={item.weddingHosts} isEn={isEn} />
       <Day 
         brideName={item.brideName} 
         groomName={item.groomName} 
         date={new Date(item.date_iso)}
+        isEn={isEn}
       />
-      <Gallery photoUrls={item.photoUrls} />
+      <Gallery photoUrls={item.photoUrls} isEn={isEn} />
       <Location
         location={item.location}
+        isEn={isEn}
       />
-      <ExtraInfo infos={item.extraInfos} />
-      <WeddingAccount accounts={item.accounts} />
+      <ExtraInfo infos={item.extraInfos} isEn={isEn} />
+      {!isEn && (
+          <WeddingAccount accounts={item.accounts} />
+      )}
       <FrameImage 
         profileUrl={item.mainPhotoUrl}
         imageUrl={item.frameImage.imageUrl}
-        content={item.frameImage.content} 
+        content={item.frameImage.content}
+        isEn={isEn}
       />
       <Footer 
         title={item.title} 
         date={new Date(item.date_iso)}
         imageUrl={item.mainPhotoUrl}
         subTitle={subTitle ?? ""}
+        isEn={isEn}
       />
     </>
   )
