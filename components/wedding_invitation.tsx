@@ -23,8 +23,8 @@ const WeddingInvitation = ({ item, subTitle }: { item: any; subTitle: any }) => 
       <Bgm 
         bgmUrl={item.bgmUrl}
       />
-      <Header 
-        title={item.title} 
+      <Header
+        title={item.title}
       />
       <MainPhoto photoUrl={item.mainPhotoUrl} />
       <WeddingInfo 

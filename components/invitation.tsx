@@ -13,14 +13,10 @@ export const Invitation = ({ message = "", videoUrl = "" }: { message?: string; 
         <div>INVITATION</div>
       </div>
       {videoUrl && (
-        <div className="w-full-or-max h-auto">
-          <video 
-            controls 
-            poster="/black_bg.png"
-          >
-            <source src={videoUrl} type="video/mp4" />
-          </video>
-        </div>
+        <iframe
+          className="w-full aspect-[16/9]"
+          src={videoUrl}
+        />
       )}
       {!videoUrl && message.split("\n").map((text, idx) => {
           if (!text) {
