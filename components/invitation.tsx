@@ -20,12 +20,14 @@ export const Invitation = ({
         <iframe
           className="w-full aspect-[16/9]"
           src={commonVideoUrl}
+          allow="clipboard-write; encrypted-media; picture-in-picture"
         />
       )}
       {videoUrl ? (
         <iframe
           className="w-full aspect-[16/9]"
           src={videoUrl}
+          allow="clipboard-write; encrypted-media; picture-in-picture"
         />
       ): (
         <>
