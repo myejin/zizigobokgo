@@ -18,7 +18,7 @@ export const Invitation = ({
       </div>
       {commonVideoUrl && (
         <iframe
-          className="w-full aspect-[16/9]"
+          className="w-full aspect-[16/9] mb-7"
           src={commonVideoUrl}
           allow="clipboard-write; encrypted-media; picture-in-picture"
         />

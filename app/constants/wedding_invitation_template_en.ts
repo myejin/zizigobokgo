@@ -91,5 +91,6 @@ export const weddingInvitationTemplateEn = {
     "groomName": "Sangho",
     "bgmUrl": "",
     "sub": [],
-    "title": ""
+    "title": "",
+    "commonVideoUrl": "https://pub-e87c21ce420d4449a2b3327bf0c92512.r2.dev/642w66qofDE3NDIwMTUxNTk4NjY=/video_en.mp4",
 }
