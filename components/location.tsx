@@ -53,6 +53,14 @@ export const Location = ({ isEn, location: {
     <div className="py-10 flex flex-col items-center bg-neutral">
       <div className="mb-7 text-default">{isEn ? "Location" : "오시는 길"}</div>
       <div className="text-default pb-1">{name}</div>
+      <div className="flex justify-between items-center">
+        <div className="text-mini-gray">{address}</div>
+        <FontAwesomeIcon 
+          icon={faCopy}
+          className={`px-2 text-mini cursor-pointer ${isClipboardCopied ? "text-gray-400" : "text-mini-gray"}`}
+          onClick={() => copyAddress(address)}
+        />
+      </div>
       {phone && (
         <div className="flex justify-between items-center">
           <div className="text-mini-gray">문의처: {phone}</div>
@@ -65,14 +73,6 @@ export const Location = ({ isEn, location: {
           />
         </div>
       )}
-      <div className="flex justify-between items-center">
-        <div className="text-mini-gray">{address}</div>
-        <FontAwesomeIcon 
-          icon={faCopy}
-          className={`px-2 text-mini cursor-pointer ${isClipboardCopied ? "text-gray-400" : "text-mini-gray"}`}
-          onClick={() => copyAddress(address)}
-        />
-      </div>
       {isEn ? (
         // google map
         <></>

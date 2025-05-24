@@ -32,12 +32,13 @@ const WeddingInvitation = ({ item, subTitle, isEn = false }: { item: any; subTit
         date={new Date(item.date_iso)}
         isEn={isEn}
       />
-      <Invitation 
-        message={item.message}
+      <Invitation
+        commonVideoUrl={item.commonVideoUrl}
+        altMessage={item.altMessage}
         videoUrl={item.sub.find((sub: any) => sub.type === "video" && sub.title === subTitle)?.video}
       />
       <WeddingContact weddingHosts={item.weddingHosts} isEn={isEn} />
-      <Day 
+      <Day
         brideName={item.brideName} 
         groomName={item.groomName} 
         date={new Date(item.date_iso)}
@@ -59,10 +60,10 @@ const WeddingInvitation = ({ item, subTitle, isEn = false }: { item: any; subTit
         isEn={isEn}
       />
       <Footer 
-        title={item.title} 
+        title={item.footerTitle} 
         date={new Date(item.date_iso)}
         imageUrl={item.mainPhotoUrl}
-        subTitle={subTitle ?? ""}
+        subTitle={item.footerSubTitle ?? subTitle ?? ""}
         isEn={isEn}
       />
     </>

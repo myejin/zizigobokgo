@@ -1,5 +1,9 @@
-export const Invitation = ({ message = "", videoUrl = "" }: { message?: string; videoUrl?: string; }) => {
-  if (!message) {
+export const Invitation = ({
+  altMessage = "",
+  videoUrl = "",
+  commonVideoUrl = "",
+}: { altMessage?: string; videoUrl?: string; commonVideoUrl?: string; }) => {
+  if (!altMessage) {
     return;
   }
   return (
@@ -12,18 +16,27 @@ export const Invitation = ({ message = "", videoUrl = "" }: { message?: string; 
         />
         <div>INVITATION</div>
       </div>
-      {videoUrl && (
+      {commonVideoUrl && (
+        <iframe
+          className="w-full aspect-[16/9]"
+          src={commonVideoUrl}
+        />
+      )}
+      {videoUrl ? (
         <iframe
           className="w-full aspect-[16/9]"
           src={videoUrl}
         />
+      ): (
+        <>
+          {altMessage.split("\n").map((text, idx) => {
+            if (!text) {
+              return <br key={idx} />
+            }
+            return <div key={idx} className="pb-1 flex flex-col items-center">{text}</div>
+          })}
+        </>
       )}
-      {!videoUrl && message.split("\n").map((text, idx) => {
-          if (!text) {
-            return <br key={idx} />
-          }
-          return <div key={idx} className="pb-1 flex flex-col items-center">{text}</div>
-        })}
     </div>
   );
 }
