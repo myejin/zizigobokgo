@@ -63,7 +63,7 @@ export const Location = ({ isEn, location: {
       </div>
       {phone && (
         <div className="flex justify-between items-center">
-          <div className="text-mini-gray">문의처: {phone}</div>
+          <div className="text-mini-gray">{isEn ? "Contact" : "문의처"}: {phone}</div>
           <FontAwesomeIcon 
             icon={faPhone}
             className={`px-2 cursor-pointer text-mini-gray`}

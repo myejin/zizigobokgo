@@ -7,6 +7,10 @@ export const weddingInvitationTemplateEn = {
         "tmapUrl": "https://tmap.life/47875143",
         "tips": [
             {
+                "type": "Taxi",
+                "content": "'창경궁 입구' 로 가주세요. 감사합니다."
+            },
+            {
                 "type": "Shuttle Bus",
                 "content": "Every 10 minutes from Exit 2 of Seoul Station."
             },
